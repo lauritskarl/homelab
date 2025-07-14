@@ -1,0 +1,9 @@
+{
+  "subject": "acct:karl@laurits.dev",
+  "links": [
+    {
+      "rel": "http://openid.net/specs/connect/1.0/issuer",
+      "href": "https://id.laurits.dev"
+    }
+  ]
+}

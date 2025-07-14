@@ -16,6 +16,7 @@ users:
 packages:
     - firewalld
     - vim-default-editor
+    - git
     - gh
 cmd:
     - ["systemctl", "enable", "--now", "firewalld"]
