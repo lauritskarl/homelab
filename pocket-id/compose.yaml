@@ -6,42 +6,42 @@ services:
             - "$PWD/data/traefik/letsencrypt:/letsencrypt"
             - "/var/run/docker.sock:/var/run/docker.sock:ro"
         ports:
-            - 80:80
-            - 443:443
+            - "80:80"
+            - "443:443"
         environment:
-            - CF_DNS_API_TOKEN=$CF_DNS_API_TOKEN
+            - CF_DNS_API_TOKEN=stHrzG-vEJD37NWCwWv3hRAtrun_huwCdbqfiHcA
         labels:
             - "traefik.enable=false"
         command:
-            - --log.level=info
-            - --accesslog=false
-            - --api.insecure=true
-            - --providers.docker=true
-            - --providers.docker.exposedbydefault=false
-            - --entrypoints.web.address=:80
-            - --entrypoints.web.http.redirections.entryPoint.to=websecure
-            - --entrypoints.web.http.redirections.entryPoint.scheme=https
-            - --entrypoints.websecure.address=:443
-            - --entrypoints.websecure.http.tls.certresolver=cloudflare
-            - --certificatesresolvers.cloudflare.acme.dnschallenge=true
-            - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
-            - --certificatesresolvers.cloudflare.acme.email=karl@laurits.dev
-            - --certificatesresolvers.cloudflare.acme.storage=/letsencrypt/acme.json
-            - --serversTransport.insecureSkipVerify=true
+            - "--log.level=info"
+            - "--accesslog=false"
+            - "--api.insecure=true"
+            - "--providers.docker=true"
+            - "--providers.docker.exposedbydefault=false"
+            - "--entrypoints.web.address=:80"
+            - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+            - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+            - "--entrypoints.websecure.address=:443"
+            - "--entrypoints.websecure.http.tls.certresolver=cloudflare"
+            - "--certificatesresolvers.cloudflare.acme.dnschallenge=true"
+            - "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
+            - "--certificatesresolvers.cloudflare.acme.email=postmaster@solisec.org"
+            - "--certificatesresolvers.cloudflare.acme.storage=/letsencrypt/acme.json"
+            - "--serversTransport.insecureSkipVerify=true"
         restart: unless-stopped
     pocketid:
         image: ghcr.io/pocket-id/pocket-id
         container_name: pocketid
         environment:
-            - PUBLIC_APP_URL=https://id.laurits.dev
+            - PUBLIC_APP_URL=https://id.solisec.org
             - TRUST_PROXY=true
         volumes:
             - "$PWD/data/pocket-id/data:/app/backend/data"
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.pocketid.rule=Host(`id.laurits.dev`)"
+            - "traefik.http.routers.pocketid.rule=Host(`id.solisec.org`)"
         healthcheck:
-            test: "curl -f http://localhost/health"
+            test: ["CMD", "/app/pocket-id", "healthcheck"]
             interval: 1m30s
             timeout: 5s
             retries: 2
@@ -54,5 +54,5 @@ services:
             - "$PWD/data/webfinger:/usr/share/nginx/html:ro"
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.webfinger.rule=Host(`laurits.dev`)"
+            - "traefik.http.routers.webfinger.rule=Host(`solisec.org`)"
         restart: unless-stopped
