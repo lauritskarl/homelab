@@ -9,7 +9,7 @@ services:
             - "80:80"
             - "443:443"
         environment:
-            - CF_DNS_API_TOKEN=stHrzG-vEJD37NWCwWv3hRAtrun_huwCdbqfiHcA
+            - CF_DNS_API_TOKEN=$CF_DNS_API_TOKEN
         labels:
             - "traefik.enable=false"
         command:
