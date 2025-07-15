@@ -6,3 +6,4 @@ theme:
 
 pages:
     - $include: home.yml
+    - $include: rss.yml
