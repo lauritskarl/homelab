@@ -56,6 +56,9 @@
                   - title: DumbBudget
                     url: https://dumbbudget.duckbill-karat.ts.net
                     icon: sh:dumbbudget.png
+                  - title: DumbAssets
+                    url: https://dumbassets.duckbill-karat.ts.net
+                    icon: sh:dumbassets.png
 
             - type: group
               widgets:
