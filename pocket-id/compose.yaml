@@ -29,14 +29,14 @@ services:
             - "--certificatesresolvers.cloudflare.acme.storage=/letsencrypt/acme.json"
             - "--serversTransport.insecureSkipVerify=true"
         restart: unless-stopped
-    pocketid:
+    pocket-id:
         image: ghcr.io/pocket-id/pocket-id
-        container_name: pocketid
+        container_name: pocket-id
         environment:
-            - PUBLIC_APP_URL=https://id.solisec.org
+            - APP_URL=https://id.solisec.org
             - TRUST_PROXY=true
         volumes:
-            - "$PWD/data/pocket-id/data:/app/backend/data"
+            - "$PWD/data/pocket-id/data:/app/data"
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.pocketid.rule=Host(`id.solisec.org`)"
