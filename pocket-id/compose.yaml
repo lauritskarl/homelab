@@ -1,6 +1,6 @@
 services:
     traefik:
-        image: traefik
+        image: traefik:v3.4
         container_name: traefik
         volumes:
             - "$PWD/data/traefik/letsencrypt:/letsencrypt"
@@ -30,7 +30,7 @@ services:
             - "--serversTransport.insecureSkipVerify=true"
         restart: unless-stopped
     pocket-id:
-        image: ghcr.io/pocket-id/pocket-id
+        image: ghcr.io/pocket-id/pocket-id:v1
         container_name: pocket-id
         environment:
             - APP_URL=https://id.solisec.org
