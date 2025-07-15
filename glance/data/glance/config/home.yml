@@ -41,6 +41,9 @@
                   - title: Gitea
                     url: https://gitea.duckbill-karat.ts.net
                     icon: sh:gitea.png
+                  - title: Searxng
+                    url: https://searxng.duckbill-karat.ts.net
+                    icon: sh:searxng.png
 
             - type: group
               widgets:
