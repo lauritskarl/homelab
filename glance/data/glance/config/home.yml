@@ -44,6 +44,15 @@
                   - title: Searxng
                     url: https://searxng.duckbill-karat.ts.net
                     icon: sh:searxng.png
+                  - title: DumbDo
+                    url: https://dumbdo.duckbill-karat.ts.net
+                    icon: sh:dumbdo.png
+                  - title: DumbKan
+                    url: https://dumbkan.duckbill-karat.ts.net
+                    icon: sh:dumbkan.png
+                  - title: DumbPad
+                    url: https://dumbpad.duckbill-karat.ts.net
+                    icon: sh:dumbpad.png
 
             - type: group
               widgets:
