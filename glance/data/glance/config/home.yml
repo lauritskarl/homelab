@@ -37,7 +37,7 @@
               sites:
                   - title: Memos
                     url: https://memos.duckbill-karat.ts.net
-                    icon: sh:Memos
+                    icon: sh:memos.png
 
             - type: group
               widgets:
