@@ -8,3 +8,4 @@ services:
             - TS_AUTHKEY=$TS_AUTHKEY
             - TS_HOSTNAME=idp
             - TAILSCALE_USE_WIP_CODE=1
+        restart: unless-stopped
