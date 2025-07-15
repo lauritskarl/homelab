@@ -38,6 +38,9 @@
                   - title: Memos
                     url: https://memos.duckbill-karat.ts.net
                     icon: sh:memos.png
+                  - title: Gitea
+                    url: https://gitea.duckbill-karat.ts.net
+                    icon: sh:gitea.png
 
             - type: group
               widgets:
