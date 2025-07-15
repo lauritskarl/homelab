@@ -53,6 +53,9 @@
                   - title: DumbPad
                     url: https://dumbpad.duckbill-karat.ts.net
                     icon: sh:dumbpad.png
+                  - title: DumbBudget
+                    url: https://dumbbudget.duckbill-karat.ts.net
+                    icon: sh:dumbbudget.png
 
             - type: group
               widgets:
