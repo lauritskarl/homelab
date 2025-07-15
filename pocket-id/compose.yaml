@@ -1,37 +1,9 @@
 services:
-    traefik:
-        image: traefik:v3.4
-        container_name: traefik
-        volumes:
-            - "$PWD/data/traefik/letsencrypt:/letsencrypt"
-            - "/var/run/docker.sock:/var/run/docker.sock:ro"
-        ports:
-            - "80:80"
-            - "443:443"
-        environment:
-            - CF_DNS_API_TOKEN=$CF_DNS_API_TOKEN
-        labels:
-            - "traefik.enable=false"
-        command:
-            - "--log.level=info"
-            - "--accesslog=false"
-            - "--api.insecure=true"
-            - "--providers.docker=true"
-            - "--providers.docker.exposedbydefault=false"
-            - "--entrypoints.web.address=:80"
-            - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
-            - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
-            - "--entrypoints.websecure.address=:443"
-            - "--entrypoints.websecure.http.tls.certresolver=cloudflare"
-            - "--certificatesresolvers.cloudflare.acme.dnschallenge=true"
-            - "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
-            - "--certificatesresolvers.cloudflare.acme.email=postmaster@solisec.org"
-            - "--certificatesresolvers.cloudflare.acme.storage=/letsencrypt/acme.json"
-            - "--serversTransport.insecureSkipVerify=true"
-        restart: unless-stopped
     pocket-id:
         image: ghcr.io/pocket-id/pocket-id:v1
         container_name: pocket-id
+        networks:
+            - proxy
         environment:
             - APP_URL=https://id.solisec.org
             - TRUST_PROXY=true
@@ -50,9 +22,14 @@ services:
     webfinger:
         image: nginx
         container_name: webfinger
+        networks:
+            - proxy
         volumes:
             - "$PWD/data/webfinger:/usr/share/nginx/html:ro"
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.webfinger.rule=Host(`solisec.org`)"
         restart: unless-stopped
+networks:
+    proxy:
+        external: true
