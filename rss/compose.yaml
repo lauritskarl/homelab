@@ -24,6 +24,10 @@ services:
             - ts-rss
         environment:
             - APP_NAME=RSS
+            - APP_CONFIG_FILE=/app/storage/feeds.txt
+            - APP_LOAD_POST_THUMBNAILS=true
+            - APP_FEED_UPDATE_FREQUENCY=60
+            - APP_PRUNE_POSTS_AFTER_DAYS=30
         volumes:
             - $PWD/data/rss:/app/storage
         restart: unless-stopped
