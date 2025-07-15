@@ -18,6 +18,10 @@ packages:
     - vim-default-editor
     - git
     - gh
+    - cifs-utils
+    - psmisc
+    - net-tools
+    - dnsutils
 cmd:
     - ["systemctl", "enable", "--now", "firewalld"]
     - ["firewall-cmd", "--permanent", "--add-service=http"]
