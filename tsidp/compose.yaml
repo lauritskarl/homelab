@@ -3,7 +3,7 @@ services:
         image: ghcr.io/lauritskarl/tsidp:v0.0.1
         container_name: tsidp
         volumes:
-            - "$PWD/data/tsidp:/var/lib/tsidp"
+            - ./data/tsidp:/var/lib/tsidp
         environment:
             - TS_AUTHKEY=$TS_AUTHKEY
             - TS_HOSTNAME=idp

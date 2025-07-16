@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - $PWD/data/ts-dumbbudget/state:/var/lib/tailscale
-            - $PWD/data/ts-dumbbudget/config:/config
+            - ./data/ts-dumbbudget/state:/var/lib/tailscale
+            - ./data/ts-dumbbudget/config:/config
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -27,5 +27,5 @@ services:
             - CURRENCY=EUR
             - BASE_URL=https://dumbbudget.duckbill-karat.ts.net
         volumes:
-            - "$PWD/data/dumbbudget:/app/data"
+            - ./data/dumbbudget:/app/data
         restart: unless-stopped

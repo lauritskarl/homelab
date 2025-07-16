@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - $PWD/data/ts-jellyfin/state:/var/lib/tailscale
-            - $PWD/data/ts-jellyfin/config:/config
+            - ./data/ts-jellyfin/state:/var/lib/tailscale
+            - ./data/ts-jellyfin/config:/config
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -23,12 +23,12 @@ services:
         depends_on:
             - ts-jellyfin
         volumes:
-            - "$PWD/data/jellyfin/config:/config"
-            - "$PWD/data/jellyfin/cache:/cache"
+            - ./data/jellyfin/config:/config
+            - ./data/jellyfin/cache:/cache
             - type: bind
               source: /mnt/nas/MEDIA
               target: /media
               read_only: true
         environment:
             - JELLYFIN_PublishedServerUrl=https://jellyfin.duckbill-karat.ts.net
-        restart: "unless-stopped"
+        restart: unless-stopped

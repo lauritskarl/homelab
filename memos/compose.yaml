@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - $PWD/data/ts-memos/state:/var/lib/tailscale
-            - $PWD/data/ts-memos/config:/config
+            - ./data/ts-memos/state:/var/lib/tailscale
+            - ./data/ts-memos/config:/config
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -23,5 +23,5 @@ services:
         depends_on:
             - ts-memos
         volumes:
-            - "$PWD/data/memos:/var/opt/memos"
+            - ./data/memos:/var/opt/memos
         restart: unless-stopped

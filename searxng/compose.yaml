@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - $PWD/data/ts-searxng/state:/var/lib/tailscale
-            - $PWD/data/ts-searxng/config:/config
+            - ./data/ts-searxng/state:/var/lib/tailscale
+            - ./data/ts-searxng/config:/config
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -23,6 +23,6 @@ services:
         depends_on:
             - ts-searxng
         volumes:
-            - "$PWD/data/searxng/config:/etc/searxng/"
-            - "$PWD/data/searxng/data:/var/cache/searxng/"
+            - ./data/searxng/config:/etc/searxng/
+            - ./data/searxng/data:/var/cache/searxng/
         restart: unless-stopped

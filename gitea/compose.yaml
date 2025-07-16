@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - $PWD/data/ts-gitea/state:/var/lib/tailscale
-            - $PWD/data/ts-gitea/config:/config
+            - ./data/ts-gitea/state:/var/lib/tailscale
+            - ./data/ts-gitea/config:/config
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -26,7 +26,7 @@ services:
             - USER_UID=1000
             - USER_GID=1000
         volumes:
-            - $PWD/data/gitea:/data
+            - ./data/gitea:/data
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
         restart: unless-stopped

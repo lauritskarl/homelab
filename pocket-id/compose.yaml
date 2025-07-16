@@ -8,7 +8,7 @@ services:
             - APP_URL=https://id.solisec.org
             - TRUST_PROXY=true
         volumes:
-            - "$PWD/data/pocket-id/data:/app/data"
+            - ./data/pocket-id/data:/app/data
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.pocketid.rule=Host(`id.solisec.org`)"
@@ -25,7 +25,7 @@ services:
         networks:
             - proxy
         volumes:
-            - "$PWD/data/webfinger:/usr/share/nginx/html:ro"
+            - ./data/webfinger:/usr/share/nginx/html:ro
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.webfinger.rule=Host(`solisec.org`)"

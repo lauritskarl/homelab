@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - $PWD/data/ts-dumbassets/state:/var/lib/tailscale
-            - $PWD/data/ts-dumbassets/config:/config
+            - ./data/ts-dumbassets/state:/var/lib/tailscale
+            - ./data/ts-dumbassets/config:/config
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -25,5 +25,5 @@ services:
         environment:
             - BASE_URL=https://dumbassets.duckbill-karat.ts.net
         volumes:
-            - "$PWD/data/dumbassets:/app/data"
+            - ./data/dumbassets:/app/data
         restart: unless-stopped
