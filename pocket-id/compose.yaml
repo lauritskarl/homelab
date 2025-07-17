@@ -32,4 +32,5 @@ services:
         restart: unless-stopped
 networks:
     proxy:
+        name: proxy
         external: true
