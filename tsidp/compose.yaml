@@ -1,6 +1,6 @@
 services:
     tsidp:
-        image: ghcr.io/lauritskarl/tsidp:v0.0.2
+        image: ghcr.io/lauritskarl/tsidp:v0.0.1
         container_name: tsidp
         volumes:
             - ./data/tsidp:/var/lib/tsidp
