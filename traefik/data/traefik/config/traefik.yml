@@ -1,0 +1,35 @@
+log:
+    level: INFO
+
+api:
+    insecure: true
+    dashboard: false
+
+providers:
+    docker:
+        exposedByDefault: false
+
+entryPoints:
+    web:
+        address: ":80"
+        http:
+            redirections:
+                entryPoint:
+                    to: websecure
+                    scheme: https
+    websecure:
+        address: ":443"
+        http:
+            tls:
+                certResolver: cloudflare
+
+certificatesResolvers:
+    cloudflare:
+        acme:
+            email: postmaster@solisec.org
+            storage: /letsencrypt/acme.json
+            dnsChallenge:
+                provider: cloudflare
+
+serversTransport:
+    insecureSkipVerify: true
