@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - ./data/ts-dumbdo/state:/var/lib/tailscale
-            - ./data/ts-dumbdo/config:/config
+            - ts-dumbdo-state:/var/lib/tailscale
+            - ./serve-config.json:/config/serve-config.json
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -23,5 +23,11 @@ services:
         depends_on:
             - ts-dumbdo
         volumes:
-            - ./data/dumbdo:/app/data
+            - dumbdo-data:/app/data
         restart: unless-stopped
+
+volumes:
+    ts-dumbdo-state:
+        name: ts-dumbdo-state
+    dumbdo-data:
+        name: dumbdo-data
