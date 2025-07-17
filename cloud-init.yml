@@ -3,14 +3,10 @@ package_upgrade: true
 users:
     - name: devops
       groups: wheel
-      shell: /bin/bash
-      sudo: ALL=(ALL) NOPASSWD:ALL
       ssh-authorized-keys:
           - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiYAIGJ3kMGsTYRl1Ho/pbrGf/GJAFwz9ULTSJAuO/S Karl's SSH Key"
     - name: ansible
       groups: wheel
-      shell: /bin/bash
-      sudo: ALL=(ALL) NOPASSWD:ALL
       ssh-authorized-keys:
           - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiYAIGJ3kMGsTYRl1Ho/pbrGf/GJAFwz9ULTSJAuO/S Karl's SSH Key"
 packages:
@@ -26,6 +22,13 @@ packages:
     - psmisc
     - net-tools
     - dnsutils
+write_files:
+    - path: /etc/sudoers.d/wheel
+      content: |
+          %wheel ALL=(ALL) NOPASSWD:ALL
+      owner: root
+      group: root
+      mode: 0440
 cmd:
     - ["systemctl", "enable", "--now", "firewalld.service"]
     - ["systemctl", "enable", "--now", "podman.socket"]
