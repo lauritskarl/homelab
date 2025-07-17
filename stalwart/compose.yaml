@@ -6,7 +6,7 @@ services:
         hostname: mail.solisec.org
         networks:
             proxy:
-                ipv4_address: 172.19.0.5
+                ipv4_address: 172.20.0.5
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - ./data/stalwart:/opt/stalwart

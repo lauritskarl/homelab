@@ -1,3 +1,7 @@
+global:
+    checkNewVersion: true
+    sendAnonymousUsage: false
+
 log:
     level: INFO
 
@@ -9,27 +13,57 @@ providers:
     docker:
         exposedByDefault: false
 
+certificatesResolvers:
+    letsencrypt:
+        acme:
+            #keyType: EC256
+            dnsChallenge:
+                provider: cloudflare
+            email: postmaster@solisec.org
+            storage: /letsencrypt/acme.json
+
 entryPoints:
-    web:
+    http:
         address: ":80"
+        http3: {}
         http:
             redirections:
                 entryPoint:
-                    to: websecure
+                    to: https
                     scheme: https
-    websecure:
+
+    https:
         address: ":443"
+        http3: {}
         http:
             tls:
-                certResolver: cloudflare
+                certResolver: letsencrypt
 
-certificatesResolvers:
-    cloudflare:
-        acme:
-            email: postmaster@solisec.org
-            storage: /letsencrypt/acme.json
-            dnsChallenge:
-                provider: cloudflare
+    #smtp:
+    #address: :25
+    #proxyProtocol:
+    #trustedIPs:
+    #- 172.20.0.2
+    #- 172.20.0.5
+
+    #smtps:
+    #address: :465
+    #proxyProtocol:
+    #trustedIPs:
+    #- 172.20.0.2
+    #- 172.20.0.5
+
+    #imaps:
+    #address: :993
+    #proxyProtocol:
+    #trustedIPs:
+    #- 172.20.0.2
+    #- 172.20.0.5
+
+tls:
+    options:
+        default:
+            minVersion: VersionTLS12
 
 serversTransport:
     insecureSkipVerify: true

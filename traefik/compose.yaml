@@ -4,18 +4,40 @@ services:
         container_name: traefik
         networks:
             - proxy
-        volumes:
-            - ./data/traefik/config:/etc/traefik
-            - ./data/traefik/letsencrypt:/letsencrypt
-            - /var/run/docker.sock:/var/run/docker.sock:ro
         ports:
             - "80:80"
             - "443:443"
+            - "25:25"
+            - "465:465"
+            - "993:993"
+        volumes:
+            - ./data/traefik/config:/etc/traefik
+            - acme:/letsencrypt
+            - /etc/localtime:/etc/localtime:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
         environment:
             - CF_DNS_API_TOKEN=$CF_DNS_API_TOKEN
         labels:
             - "traefik.enable=false"
         restart: unless-stopped
+
+    traefik-certs-dumper:
+        image: ghcr.io/kereis/traefik-certs-dumper:latest
+        container_name: traefik-certs-dumper
+        depends_on:
+            - traefik
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - acme:/traefik:ro
+            - certs:/output
+        restart: unless-stopped
+
 networks:
     proxy:
         name: proxy
+
+volumes:
+    acme:
+        name: acme
+    certs:
+        name: certs
