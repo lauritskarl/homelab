@@ -30,6 +30,7 @@ cmd:
     - ["systemctl", "enable", "--now", "firewalld.service"]
     - ["systemctl", "enable", "--now", "podman.socket"]
     - ["systemctl", "enable", "--now", "podman-restart.service"]
+    - ["systemctl", "enable", "--now", "podman-auto-update.timer"]
     - ["firewall-cmd", "--permanent", "--add-service=http"]
     - ["firewall-cmd", "--permanent", "--add-service=https"]
     - ["firewall-cmd", "--reload"]
