@@ -12,7 +12,7 @@ services:
             - "993:993"
         volumes:
             - ./data/traefik/config:/etc/traefik
-            - acme:/letsencrypt
+            - ./data/traefik/letsencrypt:/letsencrypt
             - /etc/localtime:/etc/localtime:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
         environment:
@@ -28,7 +28,7 @@ services:
             - traefik
         volumes:
             - /etc/localtime:/etc/localtime:ro
-            - acme:/traefik:ro
+            - ./data/traefik/letsencrypt:/traefik:ro
             - certs:/output
         restart: unless-stopped
 
@@ -37,7 +37,5 @@ networks:
         name: proxy
 
 volumes:
-    acme:
-        name: acme
     certs:
         name: certs
