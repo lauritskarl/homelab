@@ -1,5 +1,18 @@
 #cloud-config
 package_upgrade: true
+packages:
+    - firewalld
+    - podman
+    - podman-compose
+    - podman-docker
+    - podman-tui
+    - cifs-utils
+    - psmisc
+    - net-tools
+    - dnsutils
+    - vim-default-editor
+    - git
+    - gh
 users:
     - name: devops
       groups: wheel
@@ -9,19 +22,6 @@ users:
       groups: wheel
       ssh-authorized-keys:
           - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiYAIGJ3kMGsTYRl1Ho/pbrGf/GJAFwz9ULTSJAuO/S Karl's SSH Key"
-packages:
-    - firewalld
-    - podman
-    - podman-compose
-    - podman-docker
-    - podman-tui
-    - vim-default-editor
-    - git
-    - gh
-    - cifs-utils
-    - psmisc
-    - net-tools
-    - dnsutils
 write_files:
     - path: /etc/sudoers.d/wheel
       content: |
