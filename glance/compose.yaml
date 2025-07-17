@@ -9,8 +9,8 @@ services:
             - TS_USERSPACE=false
             - TS_SERVE_CONFIG=/config/serve-config.json
         volumes:
-            - ./data/ts-glance/state:/var/lib/tailscale
-            - ./data/ts-glance/config:/config
+            - ts-glance-state:/var/lib/tailscale
+            - ./serve-config.json:/config/serve-config.json
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -24,7 +24,11 @@ services:
             - ts-glance
         env_file: .env
         volumes:
-            - ./data/glance/config:/app/config
-            - ./data/glance/assets:/app/assets
+            - ./config:/app/config
+            - ./assets:/app/assets
             - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: unless-stopped
+
+volumes:
+    ts-glance-state:
+        name: ts-glance-state
