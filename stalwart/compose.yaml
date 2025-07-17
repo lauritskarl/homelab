@@ -1,6 +1,6 @@
 services:
     mailserver:
-        image: stalwartlabs/stalwart:latest
+        image: docker.io/stalwartlabs/stalwart:latest
         container_name: mailserver
         restart: unless-stopped
         hostname: mail.solisec.org

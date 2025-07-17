@@ -1,6 +1,6 @@
 services:
     ts-glance:
-        image: tailscale/tailscale:latest
+        image: docker.io/tailscale/tailscale:latest
         container_name: ts-glance
         hostname: glance
         environment:
@@ -17,7 +17,7 @@ services:
             - net_admin
         restart: unless-stopped
     glance:
-        image: glanceapp/glance:latest
+        image: docker.io/glanceapp/glance:latest
         container_name: glance
         network_mode: service:ts-glance
         depends_on:

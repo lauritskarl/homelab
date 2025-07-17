@@ -1,6 +1,6 @@
 services:
     ts-dumbpad:
-        image: tailscale/tailscale:latest
+        image: docker.io/tailscale/tailscale:latest
         container_name: ts-dumbpad
         hostname: dumbpad
         environment:
@@ -17,7 +17,7 @@ services:
             - net_admin
         restart: unless-stopped
     dumbpad:
-        image: dumbwareio/dumbpad:latest
+        image: docker.io/dumbwareio/dumbpad:latest
         container_name: dumbpad
         network_mode: service:ts-dumbpad
         depends_on:

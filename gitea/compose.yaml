@@ -1,6 +1,6 @@
 services:
     ts-gitea:
-        image: tailscale/tailscale:latest
+        image: docker.io/tailscale/tailscale:latest
         container_name: ts-gitea
         hostname: gitea
         environment:

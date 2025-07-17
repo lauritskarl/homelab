@@ -1,6 +1,6 @@
 services:
     ts-dumbbudget:
-        image: tailscale/tailscale:latest
+        image: docker.io/tailscale/tailscale:latest
         container_name: ts-dumbbudget
         hostname: dumbbudget
         environment:
@@ -17,7 +17,7 @@ services:
             - net_admin
         restart: unless-stopped
     dumbbudget:
-        image: dumbwareio/dumbbudget:latest
+        image: docker.io/dumbwareio/dumbbudget:latest
         container_name: dumbbudget
         network_mode: service:ts-dumbbudget
         depends_on:

@@ -1,6 +1,6 @@
 services:
     ts-memos:
-        image: tailscale/tailscale:latest
+        image: docker.io/tailscale/tailscale:latest
         container_name: ts-memos
         hostname: memos
         environment:
@@ -17,7 +17,7 @@ services:
             - net_admin
         restart: unless-stopped
     memos:
-        image: neosmemo/memos:stable
+        image: docker.io/neosmemo/memos:stable
         container_name: memos
         network_mode: service:ts-memos
         depends_on:

@@ -1,6 +1,6 @@
 services:
     ts-bitwarden:
-        image: tailscale/tailscale:latest
+        image: docker.io/tailscale/tailscale:latest
         container_name: ts-bitwarden
         hostname: bitwarden
         environment:

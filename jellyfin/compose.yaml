@@ -1,6 +1,6 @@
 services:
     ts-jellyfin:
-        image: tailscale/tailscale:latest
+        image: docker.io/tailscale/tailscale:latest
         container_name: ts-jellyfin
         hostname: jellyfin
         environment:
@@ -17,7 +17,7 @@ services:
             - net_admin
         restart: unless-stopped
     jellyfin:
-        image: jellyfin/jellyfin:latest
+        image: docker.io/jellyfin/jellyfin:latest
         container_name: jellyfin
         network_mode: service:ts-jellyfin
         depends_on:
