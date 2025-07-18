@@ -1,0 +1,11 @@
+[Unit]
+Description=Traefik Pod
+
+[Pod]
+PodName=traefik
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

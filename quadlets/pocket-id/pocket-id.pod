@@ -1,0 +1,11 @@
+[Unit]
+Description=Pocket-ID Pod
+
+[Pod]
+PodName=pocket-id
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

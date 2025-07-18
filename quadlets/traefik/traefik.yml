@@ -1,0 +1,48 @@
+global:
+    checkNewVersion: true
+    sendAnonymousUsage: true
+
+log:
+    level: INFO
+
+api:
+    dashboard: false
+    insecure: false
+
+providers:
+    docker:
+        exposedByDefault: false
+
+certificatesResolvers:
+    letsencrypt:
+        acme:
+            # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+            dnsChallenge:
+                provider: cloudflare
+            email: postmaster@solisec.org
+            storage: /letsencrypt/acme.json
+
+entryPoints:
+    http:
+        address: ":80"
+        http3: {}
+        http:
+            redirections:
+                entryPoint:
+                    to: https
+                    scheme: https
+
+    https:
+        address: ":443"
+        http3: {}
+        http:
+            tls:
+                certResolver: letsencrypt
+
+tls:
+    options:
+        default:
+            minVersion: VersionTLS12
+
+serversTransport:
+    insecureSkipVerify: true

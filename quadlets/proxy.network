@@ -1,0 +1,8 @@
+[Unit]
+Description=Proxy Network for Traefik
+
+[Network]
+NetworkName=proxy
+
+[Install]
+WantedBy=default.target
