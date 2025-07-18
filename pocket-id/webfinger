@@ -1,9 +1,0 @@
-{
-  "subject": "acct:karl@solisec.org",
-  "links": [
-    {
-      "rel": "http://openid.net/specs/connect/1.0/issuer",
-      "href": "https://id.solisec.org"
-    }
-  ]
-}
