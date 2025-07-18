@@ -3,8 +3,10 @@ services:
         image: ghcr.io/lauritskarl/tsidp:v0.0.1
         container_name: tsidp
         environment:
-            - TS_AUTHKEY=$TS_AUTHKEY
-            - TAILSCALE_USE_WIP_CODE=1
+            TS_AUTHKEY_FILE: /run/secrets/ts-authkey
+            TAILSCALE_USE_WIP_CODE: 1
+        secrets:
+            - ts-authkey
         volumes:
             - tsidp-data:/var/lib/tsidp
         command:
@@ -12,6 +14,10 @@ services:
             - "--hostname=idp"
             - "--dir=/var/lib/tsidp"
         restart: unless-stopped
+
+secrets:
+    ts-authkey:
+        external: true
 
 volumes:
     tsidp-data:

@@ -4,12 +4,12 @@ services:
         container_name: ts-bitwarden
         hostname: bitwarden
         environment:
-            TS_AUTHKEY_FILE: /run/secrets/ts-bitwarden-authkey
+            TS_AUTHKEY_FILE: /run/secrets/ts-authkey
             TS_STATE_DIR: /var/lib/tailscale
             TS_USERSPACE: false
             TS_SERVE_CONFIG: /config/serve-config.json
         secrets:
-            - ts-bitwarden-authkey
+            - ts-authkey
         volumes:
             - ts-bitwarden-state:/var/lib/tailscale
             - ./serve-config.json:/config/serve-config.json
@@ -31,7 +31,7 @@ services:
         restart: unless-stopped
 
 secrets:
-    ts-bitwarden-authkey:
+    ts-authkey:
         external: true
 
 volumes:

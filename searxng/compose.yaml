@@ -4,10 +4,12 @@ services:
         container_name: ts-searxng
         hostname: searxng
         environment:
-            - TS_AUTHKEY=$TS_AUTHKEY
-            - TS_STATE_DIR=/var/lib/tailscale
-            - TS_USERSPACE=false
-            - TS_SERVE_CONFIG=/config/serve-config.json
+            TS_AUTHKEY_FILE: /run/secrets/ts-authkey
+            TS_STATE_DIR: /var/lib/tailscale
+            TS_USERSPACE: false
+            TS_SERVE_CONFIG: /config/serve-config.json
+        secrets:
+            - ts-authkey
         volumes:
             - ts-searxng-state:/var/lib/tailscale
             - ./serve-config.json:/config/serve-config.json
@@ -27,6 +29,10 @@ services:
             - searxng-config:/etc/searxng/
             - searxng-data:/var/cache/searxng/
         restart: unless-stopped
+
+secrets:
+    ts-authkey:
+        external: true
 
 volumes:
     ts-searxng-state:
