@@ -16,6 +16,7 @@ services:
         cap_add:
             - net_admin
         restart: unless-stopped
+
     dumbkan:
         image: docker.io/dumbwareio/dumbkan:latest
         container_name: dumbkan

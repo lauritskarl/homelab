@@ -16,6 +16,7 @@ services:
         cap_add:
             - net_admin
         restart: unless-stopped
+
     bitwarden:
         image: ghcr.io/bitwarden/self-host:beta
         container_name: bitwarden

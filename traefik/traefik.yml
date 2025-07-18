@@ -16,7 +16,6 @@ providers:
 certificatesResolvers:
     letsencrypt:
         acme:
-            #keyType: EC256
             dnsChallenge:
                 provider: cloudflare
             email: postmaster@solisec.org
@@ -38,27 +37,6 @@ entryPoints:
         http:
             tls:
                 certResolver: letsencrypt
-
-    #smtp:
-    #address: :25
-    #proxyProtocol:
-    #trustedIPs:
-    #- 172.20.0.2
-    #- 172.20.0.5
-
-    #smtps:
-    #address: :465
-    #proxyProtocol:
-    #trustedIPs:
-    #- 172.20.0.2
-    #- 172.20.0.5
-
-    #imaps:
-    #address: :993
-    #proxyProtocol:
-    #trustedIPs:
-    #- 172.20.0.2
-    #- 172.20.0.5
 
 tls:
     options:

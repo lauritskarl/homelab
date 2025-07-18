@@ -16,13 +16,15 @@ services:
         cap_add:
             - net_admin
         restart: unless-stopped
+
     glance:
         image: docker.io/glanceapp/glance:latest
         container_name: glance
         network_mode: service:ts-glance
         depends_on:
             - ts-glance
-        env_file: .env
+        env_file:
+            - .env
         volumes:
             - ./config:/app/config
             - ./assets:/app/assets

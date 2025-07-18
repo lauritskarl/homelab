@@ -16,6 +16,7 @@ services:
         cap_add:
             - net_admin
         restart: unless-stopped
+
     dumbassets:
         image: docker.io/dumbwareio/dumbassets:latest
         container_name: dumbassets

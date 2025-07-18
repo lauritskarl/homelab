@@ -16,12 +16,15 @@ services:
         cap_add:
             - net_admin
         restart: unless-stopped
+
     jellyfin:
         image: docker.io/jellyfin/jellyfin:latest
         container_name: jellyfin
         network_mode: service:ts-jellyfin
         depends_on:
             - ts-jellyfin
+        environment:
+            - JELLYFIN_PublishedServerUrl=https://jellyfin.duckbill-karat.ts.net
         volumes:
             - jellyfin-config:/config
             - jellyfin-cache:/cache
@@ -29,8 +32,6 @@ services:
               source: /mnt/nas/MEDIA
               target: /media
               read_only: true
-        environment:
-            - JELLYFIN_PublishedServerUrl=https://jellyfin.duckbill-karat.ts.net
         restart: unless-stopped
 
 volumes:

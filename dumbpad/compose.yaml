@@ -16,6 +16,7 @@ services:
         cap_add:
             - net_admin
         restart: unless-stopped
+
     dumbpad:
         image: docker.io/dumbwareio/dumbpad:latest
         container_name: dumbpad
