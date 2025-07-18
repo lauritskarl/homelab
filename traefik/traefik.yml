@@ -6,8 +6,8 @@ log:
     level: INFO
 
 api:
-    insecure: false
     dashboard: false
+    insecure: false
 
 providers:
     docker:
@@ -16,6 +16,7 @@ providers:
 certificatesResolvers:
     letsencrypt:
         acme:
+            # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
             dnsChallenge:
                 provider: cloudflare
             email: postmaster@solisec.org
