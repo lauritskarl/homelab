@@ -1,0 +1,13 @@
+[Unit]
+Description=Glance Container
+Requires=ts-glance.service
+After=ts-glance.service
+
+[Container]
+Pod=glance.pod
+Image=docker.io/glanceapp/glance:latest
+AutoUpdate=registry
+Network=ts-glance.container
+Volume=./config:/app/config:Z,ro
+Volume=./assets:/app/assets:Z,ro
+Volume=/var/run/docker.sock:/var/run/docker.sock:ro

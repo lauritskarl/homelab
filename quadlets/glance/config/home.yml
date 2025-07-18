@@ -1,0 +1,138 @@
+- name: Home
+  columns:
+      - size: small
+        widgets:
+            - type: calendar
+              first-day-of-week: monday
+
+            - type: rss
+              limit: 10
+              collapse-after: 3
+              cache: 12h
+              feeds:
+                  - url: https://selfh.st/rss/
+                    title: selfh.st
+                  - url: https://ciechanow.ski/atom.xml
+                  - url: https://www.joshwcomeau.com/rss.xml
+                    title: Josh Comeau
+                  - url: https://samwho.dev/rss.xml
+
+            - type: twitch-channels
+              channels:
+                  - theprimeagen
+                  - j_blow
+                  - piratesoftware
+                  - cohhcarnage
+                  - christitustech
+                  - EJ_SA
+
+      - size: full
+        widgets:
+            - type: search
+              autofocus: true
+
+            - type: monitor
+              cache: 1m
+              title: Services
+              sites:
+                  - title: Memos
+                    url: https://memos.duckbill-karat.ts.net
+                    icon: sh:memos.png
+                  - title: Gitea
+                    url: https://gitea.duckbill-karat.ts.net
+                    icon: sh:gitea.png
+                  - title: Searxng
+                    url: https://searxng.duckbill-karat.ts.net
+                    icon: sh:searxng.png
+                  - title: DumbDo
+                    url: https://dumbdo.duckbill-karat.ts.net
+                    icon: sh:dumbdo.png
+                  - title: DumbKan
+                    url: https://dumbkan.duckbill-karat.ts.net
+                    icon: sh:dumbkan.png
+                  - title: DumbPad
+                    url: https://dumbpad.duckbill-karat.ts.net
+                    icon: sh:dumbpad.png
+                  - title: DumbBudget
+                    url: https://dumbbudget.duckbill-karat.ts.net
+                    icon: sh:dumbbudget.png
+                  - title: DumbAssets
+                    url: https://dumbassets.duckbill-karat.ts.net
+                    icon: sh:dumbassets.png
+
+            - type: group
+              widgets:
+                  - type: hacker-news
+                  - type: lobsters
+
+            - type: videos
+              channels:
+                  - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+                  - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+                  - UCsBjURrPoezykLs9EqgamOA # Fireship
+                  - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
+                  - UCHnyfMqiRRG1u-2MsSQLbXA # Veritasium
+
+            - type: group
+              widgets:
+                  - type: reddit
+                    subreddit: technology
+                    show-thumbnails: true
+                  - type: reddit
+                    subreddit: selfhosted
+                    show-thumbnails: true
+
+            - type: bookmarks
+              groups:
+                  - title: General
+                    links:
+                        - title: Gmail
+                          url: https://mail.google.com/mail/u/0/
+                        - title: Amazon
+                          url: https://www.amazon.com/
+                        - title: Github
+                          url: https://github.com/
+                  - title: Entertainment
+                    links:
+                        - title: YouTube
+                          url: https://www.youtube.com/
+                        - title: Prime Video
+                          url: https://www.primevideo.com/
+                        - title: Disney+
+                          url: https://www.disneyplus.com/
+                  - title: Social
+                    links:
+                        - title: Reddit
+                          url: https://www.reddit.com/
+                        - title: Twitter
+                          url: https://twitter.com/
+                        - title: Instagram
+                          url: https://www.instagram.com/
+
+      - size: small
+        widgets:
+            - type: weather
+              location: Tallinn, Estonia
+              units: metric
+              hour-format: 24h
+
+            - type: markets
+              markets:
+                  - symbol: SPY
+                    name: S&P 500
+                  - symbol: BTC-USD
+                    name: Bitcoin
+                  - symbol: NVDA
+                    name: NVIDIA
+                  - symbol: AAPL
+                    name: Apple
+                  - symbol: MSFT
+                    name: Microsoft
+
+            - type: releases
+              cache: 1d
+              repositories:
+                  - glanceapp/glance
+                  - go-gitea/gitea
+                  - immich-app/immich
+                  - syncthing/syncthing

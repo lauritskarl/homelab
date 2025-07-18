@@ -1,0 +1,13 @@
+[Unit]
+Description=Jellyfin Container
+Requires=ts-jellyfin.service
+After=ts-jellyfin.service
+
+[Container]
+Pod=jellyfin.pod
+Image=docker.io/jellyfin/jellyfin:latest
+AutoUpdate=registry
+Network=ts-jellyfin.container
+Volume=jellyfin-config.volume:/config:Z
+Volume=jellyfin-cache.volume:/cache:Z
+Volume=/mnt/nas/MEDIA:/media:ro

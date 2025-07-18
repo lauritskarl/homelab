@@ -1,0 +1,11 @@
+[Unit]
+Description=Jellyfin Pod
+
+[Pod]
+PodName=jellyfin
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Bitwarden Container
+Requires=ts-bitwarden.service
+After=ts-bitwarden.service
+
+[Container]
+Pod=bitwarden.pod
+Image=ghcr.io/bitwarden/self-host:beta
+AutoUpdate=registry
+Network=ts-bitwarden.container
+EnvironmentFile=.env
+Volume=bitwarden-data.volume:/etc/bitwarden:Z

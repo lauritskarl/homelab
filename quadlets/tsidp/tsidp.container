@@ -1,0 +1,16 @@
+[Unit]
+Description=TSIDP Container
+
+[Container]
+Image=ghcr.io/lauritskarl/tsidp:v0.0.1
+AutoUpdate=registry
+Secret=ts-authkey,type=env,target=TS_AUTHKEY
+Environment=TAILSCALE_USE_WIP_CODE=1
+Volume=tsidp-data.volume:/var/lib/tsidp:Z
+Exec=tsidp --hostname=idp --dir=/var/lib/tsidp
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

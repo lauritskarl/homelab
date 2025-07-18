@@ -12,7 +12,7 @@ services:
             - ts-authkey
         volumes:
             - ts-dumbpad-state:/var/lib/tailscale:Z
-            - ./serve-config.json:/config/serve-config.json:ro,Z
+            - ./serve-config.json:/config/serve-config.json:Z,ro
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:

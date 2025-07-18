@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbbudget Pod
+
+[Pod]
+PodName=dumbbudget
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Dumbbudget Container
+Requires=ts-dumbbudget.service
+After=ts-dumbbudget.service
+
+[Container]
+Pod=dumbbudget.pod
+Image=docker.io/dumbwareio/dumbbudget:latest
+AutoUpdate=registry
+Network=ts-dumbbudget.container
+Environment=CURRENCY=EUR
+Volume=dumbbudget-data.volume:/app/data:Z

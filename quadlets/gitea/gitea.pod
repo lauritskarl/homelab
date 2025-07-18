@@ -1,0 +1,11 @@
+[Unit]
+Description=Gitea Pod
+
+[Pod]
+PodName=gitea
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

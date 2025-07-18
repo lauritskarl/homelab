@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbassets Pod
+
+[Pod]
+PodName=dumbassets
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

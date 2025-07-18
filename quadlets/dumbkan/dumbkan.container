@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbkan Container
+Requires=ts-dumbkan.service
+After=ts-dumbkan.service
+
+[Container]
+Pod=dumbkan.pod
+Image=docker.io/dumbwareio/dumbkan:latest
+AutoUpdate=registry
+Network=ts-dumbkan.container
+Volume=dumbkan-data.volume:/app/data:Z

@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbpad Container
+Requires=ts-dumbpad.service
+After=ts-dumbpad.service
+
+[Container]
+Pod=dumbpad.pod
+Image=docker.io/dumbwareio/dumbpad:latest
+AutoUpdate=registry
+Network=ts-dumbpad.container
+Volume=dumbpad-data.volume:/app/data:Z

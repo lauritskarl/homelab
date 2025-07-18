@@ -12,7 +12,7 @@ services:
             - ts-authkey
         volumes:
             - ts-glance-state:/var/lib/tailscale:Z
-            - ./serve-config.json:/config/serve-config.json:ro,Z
+            - ./serve-config.json:/config/serve-config.json:Z,ro
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -26,8 +26,8 @@ services:
         depends_on:
             - ts-glance
         volumes:
-            - ./config:/app/config:ro,Z
-            - ./assets:/app/assets:ro,Z
+            - ./config:/app/config:Z,ro
+            - ./assets:/app/assets:Z,ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: unless-stopped
 

@@ -9,7 +9,7 @@ services:
         secrets:
             - cf-dns-api-token
         volumes:
-            - ./traefik.yml:/etc/traefik/traefik.yml:ro,Z
+            - ./traefik.yml:/etc/traefik/traefik.yml:Z,ro
             - traefik-certs:/letsencrypt:z
             - /etc/localtime:/etc/localtime:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -26,7 +26,7 @@ services:
         depends_on:
             - traefik
         volumes:
-            - traefik-certs:/traefik:ro,z
+            - traefik-certs:/traefik:z,ro
             - traefik-certs-dumper:/output:z
             - /etc/localtime:/etc/localtime:ro
         restart: unless-stopped

@@ -1,0 +1,11 @@
+[Unit]
+Description=Glance Pod
+
+[Pod]
+PodName=glance
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

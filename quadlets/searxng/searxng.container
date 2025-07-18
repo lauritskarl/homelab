@@ -1,0 +1,12 @@
+[Unit]
+Description=Searxng Container
+Requires=ts-searxng.service
+After=ts-searxng.service
+
+[Container]
+Pod=searxng.pod
+Image=docker.io/searxng/searxng:latest
+AutoUpdate=registry
+Network=ts-searxng.container
+Volume=searxng-config.volume:/etc/searxng:Z
+Volume=searxng-data.volume:/var/cache/searxng:Z

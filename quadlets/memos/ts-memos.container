@@ -1,0 +1,16 @@
+[Unit]
+Description=Tailscale Container for Memos
+
+[Container]
+Pod=memos.pod
+Image=docker.io/tailscale/tailscale:latest
+AutoUpdate=registry
+HostName=memos
+Secret=ts-authkey,type=env,target=TS_AUTHKEY
+Environment=TS_STATE_DIR=/var/lib/tailscale
+Environment=TS_USERSPACE=false
+Environment=TS_SERVE_CONFIG=/config/serve-config.json
+Volume=ts-memos-state.volume:/var/lib/tailscale:Z
+Volume=./serve-config.json:/config/serve-config.json:Z,ro
+AddDevice=/dev/net/tun:/dev/net/tun
+AddCapability=NET_ADMIN

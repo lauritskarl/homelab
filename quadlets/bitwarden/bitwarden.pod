@@ -1,0 +1,11 @@
+[Unit]
+Description=Bitwarden Pod
+
+[Pod]
+PodName=bitwarden
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

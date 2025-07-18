@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbpad Pod
+
+[Pod]
+PodName=dumbpad
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

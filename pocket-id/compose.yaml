@@ -26,7 +26,7 @@ services:
         networks:
             - proxy
         volumes:
-            - ./webfinger:/usr/share/nginx/html/.well-known/webfinger:ro,Z
+            - ./webfinger:/usr/share/nginx/html/.well-known/webfinger:Z,ro
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.webfinger.rule=Host(`solisec.org`)"

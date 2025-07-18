@@ -1,0 +1,11 @@
+[Unit]
+Description=Searxng Pod
+
+[Pod]
+PodName=searxng
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

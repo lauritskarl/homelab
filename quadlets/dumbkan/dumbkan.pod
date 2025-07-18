@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbkan Pod
+
+[Pod]
+PodName=dumbkan
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

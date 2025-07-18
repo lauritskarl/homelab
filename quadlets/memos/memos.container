@@ -1,0 +1,11 @@
+[Unit]
+Description=Memos Container
+Requires=ts-memos.service
+After=ts-memos.service
+
+[Container]
+Pod=memos.pod
+Image=docker.io/neosmemo/memos:stable
+AutoUpdate=registry
+Network=ts-memos.container
+Volume=memos-data.volume:/var/opt/memos:Z

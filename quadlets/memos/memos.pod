@@ -1,0 +1,11 @@
+[Unit]
+Description=Memos Pod
+
+[Pod]
+PodName=memos
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

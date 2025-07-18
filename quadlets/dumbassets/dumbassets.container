@@ -1,0 +1,12 @@
+[Unit]
+Description=Dumbassets Container
+Requires=ts-dumbassets.service
+After=ts-dumbassets.service
+
+[Container]
+Pod=dumbassets.pod
+Image=docker.io/dumbwareio/dumbassets:latest
+AutoUpdate=registry
+Network=ts-dumbassets.container
+Environment=TZ=Europe/Tallinn
+Volume=dumbassets-data.volume:/app/data:Z
