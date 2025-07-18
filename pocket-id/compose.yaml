@@ -8,7 +8,7 @@ services:
             - APP_URL=https://id.solisec.org
             - TRUST_PROXY=true
         volumes:
-            - ./data/pocket-id/data:/app/data
+            - ./data:/app/data
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.pocketid.rule=Host(`id.solisec.org`)"
@@ -20,12 +20,12 @@ services:
             start_period: 10s
         restart: unless-stopped
     webfinger:
-        image: docker.io/nginx
+        image: docker.io/nginx:latest
         container_name: webfinger
         networks:
             - proxy
         volumes:
-            - ./data/webfinger:/usr/share/nginx/html:ro
+            - ./webfinger:/usr/share/nginx/html/.well-known/webfinger:ro
         labels:
             - "traefik.enable=true"
             - "traefik.http.routers.webfinger.rule=Host(`solisec.org`)"
