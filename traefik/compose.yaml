@@ -5,7 +5,9 @@ services:
         networks:
             - proxy
         environment:
-            - CF_DNS_API_TOKEN=$CF_DNS_API_TOKEN
+            CF_DNS_API_TOKEN_FILE: /run/secrets/cf-dns-api-token
+        secrets:
+            - cf-dns-api-token
         volumes:
             - ./traefik.yml:/etc/traefik/traefik.yml
             - traefik-letsencrypt:/letsencrypt
@@ -32,6 +34,10 @@ services:
 networks:
     proxy:
         name: proxy
+
+secrets:
+    cf-dns-api-token:
+        external: true
 
 volumes:
     traefik-letsencrypt:
