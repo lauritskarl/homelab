@@ -11,8 +11,8 @@ services:
         secrets:
             - ts-authkey
         volumes:
-            - ts-bitwarden-state:/var/lib/tailscale
-            - ./serve-config.json:/config/serve-config.json
+            - ts-bitwarden-state:/var/lib/tailscale:Z
+            - ./serve-config.json:/config/serve-config.json:ro,Z
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -27,7 +27,7 @@ services:
         env_file:
             - .env
         volumes:
-            - bitwarden-data:/etc/bitwarden
+            - bitwarden-data:/etc/bitwarden:Z
         restart: unless-stopped
 
 secrets:

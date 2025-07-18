@@ -11,8 +11,8 @@ services:
         secrets:
             - ts-authkey
         volumes:
-            - ts-dumbdo-state:/var/lib/tailscale
-            - ./serve-config.json:/config/serve-config.json
+            - ts-dumbdo-state:/var/lib/tailscale:Z
+            - ./serve-config.json:/config/serve-config.json:ro,Z
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -26,7 +26,7 @@ services:
         depends_on:
             - ts-dumbdo
         volumes:
-            - dumbdo-data:/app/data
+            - dumbdo-data:/app/data:Z
         restart: unless-stopped
 
 secrets:

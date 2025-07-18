@@ -8,7 +8,7 @@ services:
         secrets:
             - ts-authkey
         volumes:
-            - tsidp-data:/var/lib/tsidp
+            - tsidp-data:/var/lib/tsidp:Z
         command:
             - "tsidp"
             - "--hostname=idp"

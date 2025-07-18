@@ -11,8 +11,8 @@ services:
         secrets:
             - ts-authkey
         volumes:
-            - ts-dumbbudget-state:/var/lib/tailscale
-            - ./serve-config.json:/config/serve-config.json
+            - ts-dumbbudget-state:/var/lib/tailscale:Z
+            - ./serve-config.json:/config/serve-config.json:ro,Z
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -28,7 +28,7 @@ services:
         environment:
             CURRENCY: EUR
         volumes:
-            - dumbbudget-data:/app/data
+            - dumbbudget-data:/app/data:Z
         restart: unless-stopped
 
 secrets:

@@ -11,8 +11,8 @@ services:
         secrets:
             - ts-authkey
         volumes:
-            - ts-jellyfin-state:/var/lib/tailscale
-            - ./serve-config.json:/config/serve-config.json
+            - ts-jellyfin-state:/var/lib/tailscale:Z
+            - ./serve-config.json:/config/serve-config.json:ro,Z
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:
@@ -26,8 +26,8 @@ services:
         depends_on:
             - ts-jellyfin
         volumes:
-            - jellyfin-config:/config
-            - jellyfin-cache:/cache
+            - jellyfin-config:/config:Z
+            - jellyfin-cache:/cache:Z
             - type: bind
               source: /mnt/nas/MEDIA
               target: /media
