@@ -7,6 +7,7 @@ After=ts-dumbassets.service
 Pod=dumbassets.pod
 Image=docker.io/dumbwareio/dumbassets:latest
 AutoUpdate=registry
+ContainerName=dumbassets
 Network=ts-dumbassets.container
 Environment=TZ=Europe/Tallinn
 Volume=dumbassets-data.volume:/app/data:Z

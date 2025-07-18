@@ -7,6 +7,7 @@ After=ts-gitea.service
 Pod=gitea.pod
 Image=docker.gitea.com/gitea:latest
 AutoUpdate=registry
+ContainerName=gitea
 Network=ts-gitea.container
 Volume=gitea-data.volume:/data:Z
 Volume=/etc/timezone:/etc/timezone:ro

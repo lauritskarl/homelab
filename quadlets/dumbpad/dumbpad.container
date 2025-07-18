@@ -7,5 +7,6 @@ After=ts-dumbpad.service
 Pod=dumbpad.pod
 Image=docker.io/dumbwareio/dumbpad:latest
 AutoUpdate=registry
+ContainerName=dumbpad
 Network=ts-dumbpad.container
 Volume=dumbpad-data.volume:/app/data:Z

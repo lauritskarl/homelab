@@ -5,6 +5,7 @@ Description=Tailscale Container for Dumbdo
 Pod=dumbdo.pod
 Image=docker.io/tailscale/tailscale:latest
 AutoUpdate=registry
+ContainerName=ts-dumbdo
 HostName=dumbdo
 Secret=ts-authkey,type=env,target=TS_AUTHKEY
 Environment=TS_STATE_DIR=/var/lib/tailscale

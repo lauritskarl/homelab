@@ -1,12 +1,11 @@
 [Unit]
 Description=Traefik Certs Dumper Container
-Requires=traefik.service
-After=traefik.service
 
 [Container]
 Pod=traefik.pod
 Image=ghcr.io/kereis/traefik-certs-dumper:latest
 AutoUpdate=registry
+ContainerName=traefik-certs-dumper
 Volume=traefik-certs.volume:/traefik:Z,ro
 Volume=traefik-certs-dumper.volume:/output:Z
 Volume=/etc/localtime:/etc/localtime:ro

@@ -7,5 +7,6 @@ After=ts-dumbkan.service
 Pod=dumbkan.pod
 Image=docker.io/dumbwareio/dumbkan:latest
 AutoUpdate=registry
+ContainerName=dumbkan
 Network=ts-dumbkan.container
 Volume=dumbkan-data.volume:/app/data:Z

@@ -7,5 +7,6 @@ After=ts-dumbdo.service
 Pod=dumbdo.pod
 Image=docker.io/dumbwareio/dumbdo:latest
 AutoUpdate=registry
+ContainerName=dumbdo
 Network=ts-dumbdo.container
 Volume=dumbdo-data.volume:/app/data:Z

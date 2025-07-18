@@ -5,6 +5,7 @@ Description=Tailscale Container for Gitea
 Pod=gitea.pod
 Image=docker.io/tailscale/tailscale:latest
 AutoUpdate=registry
+ContainerName=ts-gitea
 HostName=gitea
 Secret=ts-authkey,type=env,target=TS_AUTHKEY
 Environment=TS_STATE_DIR=/var/lib/tailscale

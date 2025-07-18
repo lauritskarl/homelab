@@ -5,6 +5,7 @@ Description=Tailscale Container for Glance
 Pod=glance.pod
 Image=docker.io/tailscale/tailscale:latest
 AutoUpdate=registry
+ContainerName=ts-glance
 HostName=glance
 Secret=ts-authkey,type=env,target=TS_AUTHKEY
 Environment=TS_STATE_DIR=/var/lib/tailscale

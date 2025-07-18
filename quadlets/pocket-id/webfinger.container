@@ -1,12 +1,11 @@
 [Unit]
 Description=Webfinger Container
-Requires=proxy.service
-After=proxy.service
 
 [Container]
 Pod=pocket-id.pod
 Image=docker.io/nginx:latest
 AutoUpdate=registry
+ContainerName=webfinger
 Network=proxy.network
 Volume=./webfinger:/usr/share/nginx/html/.well-known/webfinger:Z,ro
 Label=traefik.enable=true

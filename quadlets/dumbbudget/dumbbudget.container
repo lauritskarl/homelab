@@ -7,6 +7,7 @@ After=ts-dumbbudget.service
 Pod=dumbbudget.pod
 Image=docker.io/dumbwareio/dumbbudget:latest
 AutoUpdate=registry
+ContainerName=dumbbudget
 Network=ts-dumbbudget.container
 Environment=CURRENCY=EUR
 Volume=dumbbudget-data.volume:/app/data:Z

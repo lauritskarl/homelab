@@ -7,5 +7,6 @@ After=ts-memos.service
 Pod=memos.pod
 Image=docker.io/neosmemo/memos:stable
 AutoUpdate=registry
+ContainerName=memos
 Network=ts-memos.container
 Volume=memos-data.volume:/var/opt/memos:Z

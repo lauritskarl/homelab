@@ -7,6 +7,7 @@ After=ts-bitwarden.service
 Pod=bitwarden.pod
 Image=ghcr.io/bitwarden/self-host:beta
 AutoUpdate=registry
+ContainerName=bitwarden
 Network=ts-bitwarden.container
 Environment=BW_DB_PROVIDER=sqlite
 EnvironmentFile=.env

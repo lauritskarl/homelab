@@ -5,6 +5,7 @@ Description=Tailscale Container for Jellyfin
 Pod=jellyfin.pod
 Image=docker.io/tailscale/tailscale:latest
 AutoUpdate=registry
+ContainerName=ts-jellyfin
 HostName=jellyfin
 Secret=ts-authkey,type=env,target=TS_AUTHKEY
 Environment=TS_STATE_DIR=/var/lib/tailscale

@@ -7,6 +7,7 @@ After=ts-glance.service
 Pod=glance.pod
 Image=docker.io/glanceapp/glance:latest
 AutoUpdate=registry
+ContainerName=glance
 Network=ts-glance.container
 Volume=./config:/app/config:Z,ro
 Volume=./assets:/app/assets:Z,ro
