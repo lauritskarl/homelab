@@ -26,9 +26,9 @@ services:
         depends_on:
             - ts-dumbbudget
         environment:
-            - DUMBBUDGET_PIN=
-            - CURRENCY=EUR
-            - BASE_URL=https://dumbbudget.duckbill-karat.ts.net
+            DUMBBUDGET_PIN: 1234
+            CURRENCY: EUR
+            BASE_URL: https://dumbbudget.duckbill-karat.ts.net
         volumes:
             - dumbbudget-data:/app/data
         restart: unless-stopped

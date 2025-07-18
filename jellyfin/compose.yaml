@@ -26,7 +26,7 @@ services:
         depends_on:
             - ts-jellyfin
         environment:
-            - JELLYFIN_PublishedServerUrl=https://jellyfin.duckbill-karat.ts.net
+            JELLYFIN_PublishedServerUrl: https://jellyfin.duckbill-karat.ts.net
         volumes:
             - jellyfin-config:/config
             - jellyfin-cache:/cache

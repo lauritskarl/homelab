@@ -5,8 +5,8 @@ services:
         networks:
             - proxy
         environment:
-            - APP_URL=https://id.solisec.org
-            - TRUST_PROXY=true
+            APP_URL: https://id.solisec.org
+            TRUST_PROXY: true
         volumes:
             - pocket-id-data:/app/data
         labels:
