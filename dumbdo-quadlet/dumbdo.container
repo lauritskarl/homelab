@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbdo Container
+Requires=ts-dumbdo.service
+After=ts-dumbdo.service
+
+[Container]
+Pod=dumbdo.pod
+Image=docker.io/dumbwareio/dumbdo:latest
+AutoUpdate=registry
+Network=ts-dumbdo.container
+Volume=dumbdo-data.volume:/app/data:Z

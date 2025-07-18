@@ -1,0 +1,11 @@
+[Unit]
+Description=Dumbdo Pod
+
+[Pod]
+PodName=dumbdo
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
