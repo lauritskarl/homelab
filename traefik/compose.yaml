@@ -10,7 +10,7 @@ services:
             - cf-dns-api-token
         volumes:
             - ./traefik.yml:/etc/traefik/traefik.yml:ro,Z
-            - traefik-letsencrypt:/letsencrypt:z
+            - traefik-certs:/letsencrypt:z
             - /etc/localtime:/etc/localtime:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
         ports:
@@ -26,8 +26,8 @@ services:
         depends_on:
             - traefik
         volumes:
-            - traefik-letsencrypt:/traefik:ro,z
-            - traefik-certs-dumper-output:/output:z
+            - traefik-certs:/traefik:ro,z
+            - traefik-certs-dumper:/output:z
             - /etc/localtime:/etc/localtime:ro
         restart: unless-stopped
 
@@ -40,7 +40,7 @@ secrets:
         external: true
 
 volumes:
-    traefik-letsencrypt:
-        name: traefik-letsencrypt
-    traefik-certs-dumper-output:
-        name: traefik-certs-dumper-output
+    traefik-certs:
+        name: traefik-certs
+    traefik-certs-dumper:
+        name: traefik-certs-dumper

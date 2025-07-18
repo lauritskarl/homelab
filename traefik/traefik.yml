@@ -1,12 +1,12 @@
 global:
     checkNewVersion: true
-    sendAnonymousUsage: false
+    sendAnonymousUsage: true
 
 log:
     level: INFO
 
 api:
-    insecure: true
+    insecure: false
     dashboard: false
 
 providers:
