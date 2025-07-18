@@ -25,10 +25,6 @@ services:
         network_mode: service:ts-dumbpad
         depends_on:
             - ts-dumbpad
-        environment:
-            SITE_TITLE: DumbPad
-            DUMBPAD_PIN:
-            BASE_URL: https://dumbpad.duckbill-karat.ts.net
         volumes:
             - dumbpad-data:/app/data
         restart: unless-stopped

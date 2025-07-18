@@ -25,9 +25,6 @@ services:
         network_mode: service:ts-gitea
         depends_on:
             - ts-gitea
-        environment:
-            USER_UID: 1000
-            USER_GID: 1000
         volumes:
             - gitea-data:/data
             - /etc/timezone:/etc/timezone:ro

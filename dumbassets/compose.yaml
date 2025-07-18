@@ -26,7 +26,7 @@ services:
         depends_on:
             - ts-dumbassets
         environment:
-            BASE_URL: https://dumbassets.duckbill-karat.ts.net
+            TZ: Europe/Tallinn
         volumes:
             - dumbassets-data:/app/data
         restart: unless-stopped
