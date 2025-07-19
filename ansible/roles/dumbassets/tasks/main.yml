@@ -1,0 +1,21 @@
+---
+- name: Ensure dumbassets folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/dumbassets"
+      state: directory
+      mode: "0755"
+
+- name: Ensure dumbassets service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/dumbassets/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - dumbassets.pod
+      - dumbassets.container
+      - dumbassets-data.volume
+      - ts-dumbassets.container
+      - ts-dumbassets-state.volume
+      - serve-config.json
+  notify: Restart Dumbassets service

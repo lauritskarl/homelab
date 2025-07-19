@@ -1,0 +1,22 @@
+---
+- name: Ensure jellyfin folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/jellyfin"
+      state: directory
+      mode: "0755"
+
+- name: Ensure jellyfin service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/jellyfin/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - jellyfin.pod
+      - jellyfin.container
+      - jellyfin-cache.volume
+      - jellyfin-config.volume
+      - ts-jellyfin.container
+      - ts-jellyfin-state.volume
+      - serve-config.json
+  notify: Restart Jellyfin service

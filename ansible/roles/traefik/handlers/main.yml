@@ -1,0 +1,6 @@
+---
+- name: Restart Traefik service
+  ansible.builtin.systemd_service:
+      name: traefik-pod.service
+      state: restarted
+      daemon_reload: true

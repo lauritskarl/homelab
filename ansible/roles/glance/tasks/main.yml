@@ -1,0 +1,31 @@
+---
+- name: Ensure glance folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/glance"
+      state: directory
+      mode: "0755"
+
+- name: Ensure glance service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/glance/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - glance.pod
+      - glance.container
+      - ts-glance.container
+      - ts-glance-state.volume
+      - serve-config.json
+  notify: Restart Glance service
+
+- name: Ensure glance directories are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/glance/{{ item }}"
+      backup: true
+      mode: "0755"
+  loop:
+      - assets
+      - config
+  notify: Restart Glance service

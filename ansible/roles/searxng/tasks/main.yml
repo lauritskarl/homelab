@@ -1,0 +1,22 @@
+---
+- name: Ensure searxng folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/searxng"
+      state: directory
+      mode: "0755"
+
+- name: Ensure searxng service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/searxng/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - searxng.pod
+      - searxng.container
+      - searxng-config.volume
+      - searxng-data.volume
+      - ts-searxng.container
+      - ts-searxng-state.volume
+      - serve-config.json
+  notify: Restart Searxng service

@@ -1,0 +1,21 @@
+---
+- name: Ensure dumbpad folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/dumbpad"
+      state: directory
+      mode: "0755"
+
+- name: Ensure dumbpad service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/dumbpad/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - dumbpad.pod
+      - dumbpad.container
+      - dumbpad-data.volume
+      - ts-dumbpad.container
+      - ts-dumbpad-state.volume
+      - serve-config.json
+  notify: Restart Dumbpad service

@@ -10,5 +10,6 @@ AutoUpdate=registry
 ContainerName=bitwarden
 Network=ts-bitwarden.container
 Environment=BW_DB_PROVIDER=sqlite
+Environment=TEST=testenv
 EnvironmentFile=.env
 Volume=bitwarden-data.volume:/etc/bitwarden:Z

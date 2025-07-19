@@ -1,0 +1,21 @@
+---
+- name: Ensure dumbkan folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/dumbkan"
+      state: directory
+      mode: "0755"
+
+- name: Ensure dumbkan service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/dumbkan/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - dumbkan.pod
+      - dumbkan.container
+      - dumbkan-data.volume
+      - ts-dumbkan.container
+      - ts-dumbkan-state.volume
+      - serve-config.json
+  notify: Restart Dumbkan service

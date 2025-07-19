@@ -1,0 +1,21 @@
+---
+- name: Ensure memos folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/memos"
+      state: directory
+      mode: "0755"
+
+- name: Ensure memos service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/memos/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - memos.pod
+      - memos.container
+      - memos-data.volume
+      - ts-memos.container
+      - ts-memos-state.volume
+      - serve-config.json
+  notify: Restart Memos service

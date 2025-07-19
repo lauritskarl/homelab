@@ -1,0 +1,20 @@
+---
+- name: Ensure pocket-id folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/pocket-id"
+      state: directory
+      mode: "0755"
+
+- name: Ensure pocket-id service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/pocket-id/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - pocket-id.pod
+      - pocket-id.container
+      - pocket-id-data.volume
+      - webfinger.container
+      - webfinger
+  notify: Restart Pocket-id service

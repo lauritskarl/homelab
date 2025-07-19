@@ -1,0 +1,21 @@
+---
+- name: Ensure dumbbudget folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/dumbbudget"
+      state: directory
+      mode: "0755"
+
+- name: Ensure dumbbudget service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/dumbbudget/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - dumbbudget.pod
+      - dumbbudget.container
+      - dumbbudget-data.volume
+      - ts-dumbbudget.container
+      - ts-dumbbudget-state.volume
+      - serve-config.json
+  notify: Restart Dumbbudget service

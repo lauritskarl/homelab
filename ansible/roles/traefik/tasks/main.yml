@@ -1,0 +1,29 @@
+---
+- name: Ensure traefik folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/traefik"
+      state: directory
+      mode: "0755"
+
+- name: Ensure proxy network file is in place
+  ansible.builtin.copy:
+      src: proxy.network
+      dest: "/etc/containers/systemd/proxy.network"
+      backup: true
+      mode: "0644"
+  notify: Restart Traefik service
+
+- name: Ensure traefik service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/traefik/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - traefik.pod
+      - traefik.container
+      - traefik-certs.volume
+      - traefik-certs-dumper.container
+      - traefik-certs-dumper.volume
+      - traefik.yml
+  notify: Restart Traefik service

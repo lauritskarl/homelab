@@ -1,7 +1,6 @@
 # TODO
 
 - [ ] Set up cloudflare tunnel for traefik and it's connected services
-- [ ] Set up ansible playbook running locally with roles for every service
 - [ ] Set up backup solution for all services
 - [ ] Document/automate podman secrets (maybe using ansible vault)
 - [ ] Set up mail server with stalwart mail and traefik
@@ -13,3 +12,7 @@
 - [ ] Add pdf service (stirling-pdf)
 - [ ] Add it-tools service
 - [ ] Automate terraform using github-actions (or gitea equivalent)
+- [ ] Set up modern ansible execution environment
+- [ ] Set up mise to automate ansible terraform etc stuff
+- [ ] Make terraform call ansible automatically so everything is automated
+- [ ] Integrate terraform with ansible inventories

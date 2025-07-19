@@ -1,0 +1,21 @@
+---
+- name: Ensure dumbdo folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/dumbdo"
+      state: directory
+      mode: "0755"
+
+- name: Ensure dumbdo service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/dumbdo/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - dumbdo.pod
+      - dumbdo.container
+      - dumbdo-data.volume
+      - ts-dumbdo.container
+      - ts-dumbdo-state.volume
+      - serve-config.json
+  notify: Restart Dumbdo service

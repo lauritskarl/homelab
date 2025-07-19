@@ -1,0 +1,22 @@
+---
+- name: Ensure bitwarden folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/bitwarden"
+      state: directory
+      mode: "0755"
+
+- name: Ensure bitwarden service files are in place
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: "/etc/containers/systemd/bitwarden/{{ item }}"
+      backup: true
+      mode: "0644"
+  loop:
+      - bitwarden.pod
+      - bitwarden.container
+      - bitwarden-data.volume
+      - .env
+      - ts-bitwarden.container
+      - ts-bitwarden-state.volume
+      - serve-config.json
+  notify: Restart Bitwarden service

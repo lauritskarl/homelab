@@ -1,0 +1,19 @@
+---
+- name: Homelab services deployment
+  hosts: localhost
+  become: true
+  roles:
+      - bitwarden
+      - dumbassets
+      - dumbbudget
+      - dumbdo
+      - dumbkan
+      - dumbpad
+      - gitea
+      - glance
+      - jellyfin
+      - memos
+      - pocket-id
+      - searxng
+      - traefik
+      # - tsidp
