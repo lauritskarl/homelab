@@ -17,5 +17,5 @@
       - dumbdo-data.volume
       - ts-dumbdo.container
       - ts-dumbdo-state.volume
-      - serve-config.json
+      - dumbdo.json
   notify: Restart Dumbdo service

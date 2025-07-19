@@ -17,5 +17,5 @@
       - dumbbudget-data.volume
       - ts-dumbbudget.container
       - ts-dumbbudget-state.volume
-      - serve-config.json
+      - dumbbudget.json
   notify: Restart Dumbbudget service

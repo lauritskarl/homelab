@@ -17,5 +17,5 @@
       - dumbpad-data.volume
       - ts-dumbpad.container
       - ts-dumbpad-state.volume
-      - serve-config.json
+      - dumbpad.json
   notify: Restart Dumbpad service

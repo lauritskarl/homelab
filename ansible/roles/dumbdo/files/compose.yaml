@@ -7,12 +7,12 @@ services:
             TS_AUTHKEY_FILE: /run/secrets/ts-authkey
             TS_STATE_DIR: /var/lib/tailscale
             TS_USERSPACE: false
-            TS_SERVE_CONFIG: /config/serve-config.json
+            TS_SERVE_CONFIG: /config/dumbdo.json
         secrets:
             - ts-authkey
         volumes:
             - ts-dumbdo-state:/var/lib/tailscale:Z
-            - ./serve-config.json:/config/serve-config.json:Z,ro
+            - ./dumbdo.json:/config/dumbdo.json:Z,ro
         devices:
             - /dev/net/tun:/dev/net/tun
         cap_add:

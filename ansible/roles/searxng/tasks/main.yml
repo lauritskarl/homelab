@@ -18,5 +18,5 @@
       - searxng-data.volume
       - ts-searxng.container
       - ts-searxng-state.volume
-      - serve-config.json
+      - searxng.json
   notify: Restart Searxng service

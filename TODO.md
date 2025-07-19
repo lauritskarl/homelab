@@ -20,7 +20,9 @@
 - [ ] Implement Ansible Vault for secrets management
 - [ ] Migrate existing secrets to Ansible Vault
 - [ ] Create secrets rotation procedures
-- [ ] Rename serve-config.json files to service-specific naming (e.g., bitwarden.json)
+- [ ] Convert Bitwarden .env values to podman secrets
+
+
 
 ## 🚀 Medium Priority
 
@@ -77,6 +79,7 @@
 
 - [x] Change proxy network name to traefik.network
 - [x] Set up ansible roles for homelab services
+- [x] Rename serve-config.json files to service-specific naming (e.g., bitwarden.json)
 
 ## 📋 Implementation Notes
 

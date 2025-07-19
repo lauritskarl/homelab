@@ -17,5 +17,5 @@
       - memos-data.volume
       - ts-memos.container
       - ts-memos-state.volume
-      - serve-config.json
+      - memos.json
   notify: Restart Memos service

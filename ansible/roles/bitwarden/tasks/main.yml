@@ -18,5 +18,5 @@
       - .env
       - ts-bitwarden.container
       - ts-bitwarden-state.volume
-      - serve-config.json
+      - bitwarden.json
   notify: Restart Bitwarden service

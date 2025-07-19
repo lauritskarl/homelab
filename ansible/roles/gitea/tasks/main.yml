@@ -17,5 +17,5 @@
       - gitea-data.volume
       - ts-gitea.container
       - ts-gitea-state.volume
-      - serve-config.json
+      - gitea.json
   notify: Restart Gitea service

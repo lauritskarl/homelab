@@ -17,5 +17,5 @@
       - dumbassets-data.volume
       - ts-dumbassets.container
       - ts-dumbassets-state.volume
-      - serve-config.json
+      - dumbassets.json
   notify: Restart Dumbassets service

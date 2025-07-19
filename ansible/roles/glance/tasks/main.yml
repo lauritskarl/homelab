@@ -16,7 +16,7 @@
       - glance.container
       - ts-glance.container
       - ts-glance-state.volume
-      - serve-config.json
+      - glance.json
   notify: Restart Glance service
 
 - name: Ensure glance directories are in place

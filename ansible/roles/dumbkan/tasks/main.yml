@@ -17,5 +17,5 @@
       - dumbkan-data.volume
       - ts-dumbkan.container
       - ts-dumbkan-state.volume
-      - serve-config.json
+      - dumbkan.json
   notify: Restart Dumbkan service

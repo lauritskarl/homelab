@@ -18,5 +18,5 @@
       - jellyfin-config.volume
       - ts-jellyfin.container
       - ts-jellyfin-state.volume
-      - serve-config.json
+      - jellyfin.json
   notify: Restart Jellyfin service
