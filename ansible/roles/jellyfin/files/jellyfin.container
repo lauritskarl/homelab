@@ -5,7 +5,7 @@ After=ts-jellyfin.service
 
 [Container]
 Pod=jellyfin.pod
-Image=docker.io/jellyfin/jellyfin:latest
+Image=ghcr.io/jellyfin/jellyfin:latest
 AutoUpdate=registry
 ContainerName=jellyfin
 Network=ts-jellyfin.container

@@ -3,7 +3,7 @@ Description=Tailscale Container for Jellyfin
 
 [Container]
 Pod=jellyfin.pod
-Image=docker.io/tailscale/tailscale:latest
+Image=ghcr.io/tailscale/tailscale:latest
 AutoUpdate=registry
 ContainerName=ts-jellyfin
 HostName=jellyfin

@@ -3,7 +3,7 @@ Description=Tailscale Container for Dumbkan
 
 [Container]
 Pod=dumbkan.pod
-Image=docker.io/tailscale/tailscale:latest
+Image=ghcr.io/tailscale/tailscale:latest
 AutoUpdate=registry
 ContainerName=ts-dumbkan
 HostName=dumbkan

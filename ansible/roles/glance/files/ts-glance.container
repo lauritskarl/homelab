@@ -3,7 +3,7 @@ Description=Tailscale Container for Glance
 
 [Container]
 Pod=glance.pod
-Image=docker.io/tailscale/tailscale:latest
+Image=ghcr.io/tailscale/tailscale:latest
 AutoUpdate=registry
 ContainerName=ts-glance
 HostName=glance

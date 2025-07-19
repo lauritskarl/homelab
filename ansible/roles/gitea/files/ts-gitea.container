@@ -3,7 +3,7 @@ Description=Tailscale Container for Gitea
 
 [Container]
 Pod=gitea.pod
-Image=docker.io/tailscale/tailscale:latest
+Image=ghcr.io/tailscale/tailscale:latest
 AutoUpdate=registry
 ContainerName=ts-gitea
 HostName=gitea

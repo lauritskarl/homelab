@@ -3,7 +3,7 @@ Description=Tailscale Container for Bitwarden
 
 [Container]
 Pod=bitwarden.pod
-Image=docker.io/tailscale/tailscale:latest
+Image=ghcr.io/tailscale/tailscale:latest
 AutoUpdate=registry
 ContainerName=ts-bitwarden
 HostName=bitwarden

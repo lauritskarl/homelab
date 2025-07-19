@@ -3,7 +3,7 @@ Description=Tailscale Container for Dumbdo
 
 [Container]
 Pod=dumbdo.pod
-Image=docker.io/tailscale/tailscale:latest
+Image=ghcr.io/tailscale/tailscale:latest
 AutoUpdate=registry
 ContainerName=ts-dumbdo
 HostName=dumbdo

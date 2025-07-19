@@ -3,7 +3,7 @@ Description=Traefik Pod
 
 [Pod]
 PodName=traefik
-Network=proxy.network
+Network=traefik.network
 PublishPort=80:80
 PublishPort=443:443
 

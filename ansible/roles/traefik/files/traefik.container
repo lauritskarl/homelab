@@ -7,7 +7,7 @@ Image=docker.io/traefik:v3
 AutoUpdate=registry
 ContainerName=traefik
 Secret=cf-dns-api-token,type=env,target=CF_DNS_API_TOKEN
-Volume=./traefik.yml:/etc/traefik/traefik.yml:Z,ro
+Volume=./traefik.yaml:/etc/traefik/traefik.yml:Z,ro
 Volume=traefik-certs.volume:/letsencrypt:Z
 Volume=/etc/localtime:/etc/localtime:ro
 Volume=/var/run/docker.sock:/var/run/docker.sock:ro

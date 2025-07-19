@@ -6,7 +6,7 @@ Pod=pocket-id.pod
 Image=ghcr.io/pocket-id/pocket-id:v1
 AutoUpdate=registry
 ContainerName=pocket-id
-Network=proxy.network
+Network=traefik.network
 Environment=APP_URL=https://id.solisec.org
 Environment=TRUST_PROXY=true
 Volume=pocket-id-data.volume:/app/data:Z
