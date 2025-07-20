@@ -1,6 +1,9 @@
 # TODO
 
-- [ ] Set up ansible vault to manage podman secrets
+- [ ] Set up ansible execution environment
+- [ ] Set up mise to automate ansible, terraform and github-actions
+- [ ] Set up GitHub Actions runner with Tailscale connectivity
+- [ ] Set up github actions for ansible including the execution environment
 - [ ] Implement container volume backups
 - [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up stirling-pdf
@@ -8,15 +11,11 @@
 - [ ] Set up uptime-kuma
 - [ ] Set up beszel
 - [ ] Set up crowdsec
-- [ ] Set up mise to automate ansible, terraform and github-actions
 - [ ] Set up hetzner s3 for terraform state backend
 - [ ] Set up terraform automation for hetzner, cloudflare, git, tailscale
 - [ ] Set up github actions for terraform
-- [ ] Set up ansible execution environment
-- [ ] Set up github actions for ansible including the execution environment
 - [ ] Set up ansible inventory using terraform
 - [ ] Configure Terraform to trigger Ansible playbooks post-provision
-- [ ] Set up GitHub Actions runner with Tailscale connectivity
 - [ ] Set up fedora coreos using bootc and ignition
 - [ ] Set up stalwart mail server
 
@@ -25,3 +24,4 @@
 - [x] Rename serve-config.json files to service-specific naming (e.g., bitwarden.json)
 - [x] Convert Bitwarden .env values to podman secrets
 - [x] Configure Cloudflare tunnel for Pocket-ID
+- [x] Set up ansible vault to manage podman secrets
