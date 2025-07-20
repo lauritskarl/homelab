@@ -9,7 +9,6 @@
   ansible.builtin.copy:
       src: "{{ item }}"
       dest: "/etc/containers/systemd/traefik/{{ item }}"
-      backup: true
       mode: "0644"
   loop:
       - traefik.network

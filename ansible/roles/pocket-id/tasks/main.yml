@@ -9,7 +9,6 @@
   ansible.builtin.copy:
       src: "{{ item }}"
       dest: "/etc/containers/systemd/pocket-id/{{ item }}"
-      backup: true
       mode: "0644"
   loop:
       - pocket-id.pod

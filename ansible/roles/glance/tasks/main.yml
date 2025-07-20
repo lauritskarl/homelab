@@ -9,7 +9,6 @@
   ansible.builtin.copy:
       src: "{{ item }}"
       dest: "/etc/containers/systemd/glance/{{ item }}"
-      backup: true
       mode: "0644"
   loop:
       - glance.pod
@@ -19,11 +18,10 @@
       - glance.json
   notify: Restart Glance service
 
-- name: Ensure glance directories are in place
+- name: Ensure glance assets and config files are in place
   ansible.builtin.copy:
       src: "{{ item }}"
-      dest: "/etc/containers/systemd/glance/{{ item }}"
-      backup: true
+      dest: "/etc/containers/systemd/glance/"
       mode: "0755"
   loop:
       - assets

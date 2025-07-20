@@ -9,7 +9,6 @@
   ansible.builtin.copy:
       src: "{{ item }}"
       dest: "/etc/containers/systemd/tsidp/{{ item }}"
-      backup: true
       mode: "0644"
   loop:
       - tsidp.container

@@ -9,7 +9,6 @@
   ansible.builtin.copy:
       src: "{{ item }}"
       dest: "/etc/containers/systemd/bitwarden/{{ item }}"
-      backup: true
       mode: "0644"
   loop:
       - bitwarden.pod
