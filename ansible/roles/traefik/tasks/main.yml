@@ -13,6 +13,7 @@
   loop:
       - traefik.network
       - traefik.pod
+      - cloudflared.container
       - traefik.container
       - traefik-certs.volume
       - traefik-certs-dumper.container

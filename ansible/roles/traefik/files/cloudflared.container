@@ -1,0 +1,10 @@
+[Unit]
+Description=Cloudflared Container
+
+[Container]
+Pod=traefik.pod
+Image=docker.io/cloudflare/cloudflared:latest
+AutoUpdate=registry
+ContainerName=cloudflared
+Secret=cf-tunnel-token,type=env,target=TUNNEL_TOKEN
+Exec=tunnel run

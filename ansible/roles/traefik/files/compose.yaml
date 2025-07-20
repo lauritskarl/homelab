@@ -1,9 +1,21 @@
 services:
+    cloudflared:
+        image: docker.io/cloudflare/cloudflared:latest
+        container_name: cloudflared
+        networks:
+            - traefik
+        environment:
+            TUNNEL_TOKEN_FILE: /run/secrets/cf-tunnel-token
+        secrets:
+            - cf-tunnel-token
+        command: tunnel run
+        restart: unless-stopped
+
     traefik:
         image: docker.io/traefik:v3
         container_name: traefik
         networks:
-            - proxy
+            - traefik
         environment:
             CF_DNS_API_TOKEN_FILE: /run/secrets/cf-dns-api-token
         secrets:
@@ -32,10 +44,12 @@ services:
         restart: unless-stopped
 
 networks:
-    proxy:
-        name: proxy
+    traefik:
+        name: traefik
 
 secrets:
+    cf-tunnel-token:
+        external: true
     cf-dns-api-token:
         external: true
 
