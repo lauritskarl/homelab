@@ -12,6 +12,7 @@
       mode: "0644"
   loop:
       - pocket-id.pod
+      - cloudflared.container
       - pocket-id.container
       - pocket-id-data.volume
       - webfinger.container

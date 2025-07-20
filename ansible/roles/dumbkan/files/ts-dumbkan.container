@@ -12,6 +12,6 @@ Environment=TS_STATE_DIR=/var/lib/tailscale
 Environment=TS_USERSPACE=false
 Environment=TS_SERVE_CONFIG=/config/serve-config.json
 Volume=ts-dumbkan-state.volume:/var/lib/tailscale:Z
-Volume=./serve-config.json:/config/serve-config.json:Z,ro
+Volume=./dumbkan.json:/config/serve-config.json:Z,ro
 AddDevice=/dev/net/tun:/dev/net/tun
 AddCapability=NET_ADMIN

@@ -6,7 +6,4 @@ Pod=pocket-id.pod
 Image=docker.io/nginx:latest
 AutoUpdate=registry
 ContainerName=webfinger
-Network=traefik.network
 Volume=./webfinger:/usr/share/nginx/html/.well-known/webfinger:Z,ro
-Label=traefik.enable=true
-Label=traefik.http.routers.webfinger.rule=Host(`solisec.org`)

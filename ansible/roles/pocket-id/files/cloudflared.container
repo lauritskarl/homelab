@@ -2,7 +2,7 @@
 Description=Cloudflared Container
 
 [Container]
-Pod=traefik.pod
+Pod=pocket-id.pod
 Image=docker.io/cloudflare/cloudflared:latest
 AutoUpdate=registry
 ContainerName=cloudflared

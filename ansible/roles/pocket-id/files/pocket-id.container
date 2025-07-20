@@ -6,12 +6,9 @@ Pod=pocket-id.pod
 Image=ghcr.io/pocket-id/pocket-id:v1
 AutoUpdate=registry
 ContainerName=pocket-id
-Network=traefik.network
 Environment=APP_URL=https://id.solisec.org
 Environment=TRUST_PROXY=true
 Volume=pocket-id-data.volume:/app/data:Z
-Label=traefik.enable=true
-Label=traefik.http.routers.pocketid.rule=Host(`id.solisec.org`)
 HealthCmd=/app/pocket-id healthcheck
 HealthInterval=1m30s
 HealthTimeout=5s
