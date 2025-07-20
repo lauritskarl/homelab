@@ -18,3 +18,10 @@
       - ts-dumbassets-state.volume
       - dumbassets.json
   notify: Restart Dumbassets service
+
+- name: Ensure dumbassets service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true

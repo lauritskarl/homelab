@@ -18,3 +18,10 @@
       - ts-memos-state.volume
       - memos.json
   notify: Restart Memos service
+
+- name: Ensure memos service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true

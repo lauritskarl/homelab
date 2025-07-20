@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] Set up ansible vault to manage podman secrets
 - [ ] Implement container volume backups
 - [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up stirling-pdf
@@ -8,7 +9,6 @@
 - [ ] Set up beszel
 - [ ] Set up crowdsec
 - [ ] Set up mise to automate ansible, terraform and github-actions
-- [ ] Set up ansible vault to manage podman secrets
 - [ ] Set up hetzner s3 for terraform state backend
 - [ ] Set up terraform automation for hetzner, cloudflare, git, tailscale
 - [ ] Set up github actions for terraform

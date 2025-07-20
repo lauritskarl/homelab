@@ -18,3 +18,21 @@
       - ts-bitwarden-state.volume
       - bitwarden.json
   notify: Restart Bitwarden service
+
+- name: Ensure bitwarden service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "{{ item.name }}"
+      data: "{{ item.data }}"
+  loop:
+      - name: ts-authkey
+        data: "{{ tailscale.ts_authkey }}"
+      - name: bw-domain
+        data: "{{ bitwarden.bw_domain }}"
+      - name: bw-installation-id
+        data: "{{ bitwarden.bw_installation_id }}"
+      - name: bw-installation-key
+        data: "{{ bitwarden.bw_installation_key }}"
+      - name: bw-admins
+        data: "{{ bitwarden.bw_admins }}"
+  no_log: true

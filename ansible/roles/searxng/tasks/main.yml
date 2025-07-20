@@ -19,3 +19,10 @@
       - ts-searxng-state.volume
       - searxng.json
   notify: Restart Searxng service
+
+- name: Ensure searxng service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true

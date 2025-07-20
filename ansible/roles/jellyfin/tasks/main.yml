@@ -19,3 +19,10 @@
       - ts-jellyfin-state.volume
       - jellyfin.json
   notify: Restart Jellyfin service
+
+- name: Ensure jellyfin service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true

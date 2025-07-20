@@ -18,3 +18,10 @@
       - ts-dumbpad-state.volume
       - dumbpad.json
   notify: Restart Dumbpad service
+
+- name: Ensure dumbpad service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true

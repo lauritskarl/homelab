@@ -18,3 +18,10 @@
       - webfinger.container
       - webfinger
   notify: Restart Pocket-id service
+
+- name: Ensure pocket-id service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "cf-tunnel-token"
+      data: "{{ cloudflare.cf_tunnel_token }}"
+  no_log: true

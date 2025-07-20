@@ -18,3 +18,10 @@
       - ts-gitea-state.volume
       - gitea.json
   notify: Restart Gitea service
+
+- name: Ensure gitea service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true

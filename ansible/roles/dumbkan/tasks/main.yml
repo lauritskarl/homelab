@@ -18,3 +18,10 @@
       - ts-dumbkan-state.volume
       - dumbkan.json
   notify: Restart Dumbkan service
+
+- name: Ensure dumbkan service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true

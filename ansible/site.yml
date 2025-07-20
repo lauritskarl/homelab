@@ -2,6 +2,8 @@
 - name: Homelab services deployment
   hosts: localhost
   become: true
+  vars_files:
+      - vault.yml
   roles:
       - bitwarden
       - dumbassets

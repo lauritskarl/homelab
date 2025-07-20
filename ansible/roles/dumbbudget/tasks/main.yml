@@ -18,3 +18,10 @@
       - ts-dumbbudget-state.volume
       - dumbbudget.json
   notify: Restart Dumbbudget service
+
+- name: Ensure dumbbudget service secrets are available
+  containers.podman.podman_secret:
+      state: present
+      name: "ts-authkey"
+      data: "{{ tailscale.ts_authkey }}"
+  no_log: true
