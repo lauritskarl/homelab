@@ -10,6 +10,8 @@ AutoUpdate=registry
 ContainerName=bitwarden
 Network=ts-bitwarden.container
 Environment=BW_DB_PROVIDER=sqlite
-Environment=TEST=testenv
-EnvironmentFile=.env
+Secret=bw-domain,type=env,target=BW_DOMAIN
+Secret=bw-installation-id,type=env,target=BW_INSTALLATION_ID
+Secret=bw-installation-key,type=env,target=BW_INSTALLATION_KEY
+Secret=bw-admins,type=env,target=adminSettings__admins
 Volume=bitwarden-data.volume:/etc/bitwarden:Z

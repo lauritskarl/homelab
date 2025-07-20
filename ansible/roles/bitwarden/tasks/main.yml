@@ -14,7 +14,6 @@
       - bitwarden.pod
       - bitwarden.container
       - bitwarden-data.volume
-      - .env
       - ts-bitwarden.container
       - ts-bitwarden-state.volume
       - bitwarden.json

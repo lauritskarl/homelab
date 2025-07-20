@@ -24,14 +24,31 @@ services:
         network_mode: service:ts-bitwarden
         depends_on:
             - ts-bitwarden
-        env_file:
-            - .env
+        environment:
+            BW_DB_PROVIDER: sqlite
+            BW_DOMAIN_FILE: /run/secrets/bw-domain
+            BW_INSTALLATION_ID_FILE: /run/secrets/bw-installation-id
+            BW_INSTALLATION_KEY_FILE: /run/secrets/bw-installation-key
+            adminSettings__admins_FILE: /run/secrets/bw-admins
+        secrets:
+            - bw-domain
+            - bw-installation-id
+            - bw-installation-key
+            - bw-admins
         volumes:
             - bitwarden-data:/etc/bitwarden:Z
         restart: unless-stopped
 
 secrets:
     ts-authkey:
+        external: true
+    bw-domain:
+        external: true
+    bw-installation-id:
+        external: true
+    bw-installation-key:
+        external: true
+    bw-admins:
         external: true
 
 volumes:
