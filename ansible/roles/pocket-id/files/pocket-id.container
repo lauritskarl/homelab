@@ -3,7 +3,7 @@ Description=Pocket-ID Container
 
 [Container]
 Pod=pocket-id.pod
-Image=ghcr.io/pocket-id/pocket-id:v1
+Image=ghcr.io/pocket-id/pocket-id:latest
 AutoUpdate=registry
 ContainerName=pocket-id
 Environment=APP_URL=https://id.solisec.org

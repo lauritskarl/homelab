@@ -1,0 +1,33 @@
+---
+- name: Ensure podman packages are installed
+  ansible.builtin.package:
+      name:
+          - podman
+          - podman-compose
+          - podman-docker
+          - podman-tui
+      state: latest
+      update_cache: true
+
+- name: Ensure external podman storage directory exists
+  ansible.builtin.file:
+      path: "/mnt/HC_Volume_102902324/containers/storage"
+      state: directory
+      mode: "0700"
+
+- name: Ensure custom podman storage configuration file is present
+  ansible.builtin.copy:
+      src: storage.conf
+      dest: /usr/share/containers/storage.conf
+      mode: "0644"
+      backup: true
+
+- name: Ensure podman services are enabled and started
+  ansible.builtin.systemd_service:
+      name: "{{ item }}"
+      state: started
+      enabled: true
+  loop:
+      - podman.socket
+      - podman-restart.service
+      - podman-auto-update.timer

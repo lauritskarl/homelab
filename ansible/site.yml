@@ -5,16 +5,17 @@
   vars_files:
       - vault.yml
   roles:
+      # - podman
+      - pocket-id
+      - gitea
       - bitwarden
-      - dumbassets
-      - dumbbudget
+      - searxng
+      - memos
+      - jellyfin
+      - glance
+      - dumbpad
       - dumbdo
       - dumbkan
-      - dumbpad
-      - gitea
-      - glance
-      - jellyfin
-      - memos
-      - pocket-id
-      - searxng
+      - dumbbudget
+      - dumbassets
       # - tsidp
