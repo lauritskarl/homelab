@@ -2,6 +2,8 @@
 
 - [ ] Implement container volume backups
   - [ ] Move container volume location to mounted volume
+- [ ] Rename repo to iac
+- [ ] Automate tailscale authkey gen in terraform
 - [ ] Set up ansible execution environment
 - [ ] Set up mise to automate ansible, terraform and github-actions
 - [ ] Set up GitHub Actions runner with Tailscale connectivity
