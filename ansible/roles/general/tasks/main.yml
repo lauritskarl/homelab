@@ -20,7 +20,16 @@
           - firewalld
           - tailscale
           - cifs-utils
+          - cockpit
       state: latest
+
+- name: Ensure cockpit is allowed in firewalld
+  ansible.posix.firewalld:
+      service: cockpit
+      state: enabled
+      permanent: true
+      immediate: true
+      offline: true
 
 - name: Ensure essential services are enabled and started
   ansible.builtin.systemd_service:
@@ -28,8 +37,9 @@
       state: started
       enabled: true
   loop:
-      - firewalld
-      - tailscaled
+      - firewalld.service
+      - tailscaled.service
+      - cockpit.socket
 
 - name: Ensure essential users are present
   ansible.builtin.user:
@@ -50,3 +60,71 @@
       group: root
       mode: 0640
       validate: "visudo -cf %s"
+
+- name: Ensure nas mount directory is present
+  ansible.builtin.file:
+      path: /mnt/nas
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+- name: Ensure nas mount credentials file is present
+  ansible.builtin.template:
+      src: .credentials.j2
+      dest: /root/.credentials
+      owner: root
+      group: root
+      mode: 0600
+  notify:
+      - Reload nas mount unit
+
+- name: Ensure nas mount unit is present
+  ansible.builtin.template:
+      src: mnt-nas.mount.j2
+      dest: /etc/systemd/system/mnt-nas.mount
+      owner: root
+      group: root
+      mode: 0644
+  notify:
+      - Reload nas mount unit
+
+- name: Ensure nas mount unit is enabled and started
+  ansible.builtin.systemd_service:
+      name: mnt-nas.mount
+      state: started
+      enabled: true
+      daemon-reload: true
+
+- name: Ensure container volumes backup directory is present
+  ansible.builtin.file:
+      path: /mnt/nas/BACKUPS/containers/storage/volumes
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+- name: Ensure container volumes backup script is present
+  ansible.builtin.copy:
+      src: backup-container-volumes.sh
+      dest: /root/backup-container-volumes.sh
+      owner: root
+      group: root
+      mode: 0755
+
+- name: Ensure container volumes backup service and timer are present
+  ansible.builtin.copy:
+      src: "{{ item }}"
+      dest: /etc/systemd/system/{{ item }}
+      owner: root
+      group: root
+      mode: 0644
+  loop:
+      - backup-container-volumes.service
+      - backup-container-volumes.timer
+
+- name: Ensure container volumes backup timer is enabled
+  ansible.builtin.systemd_service:
+      name: backup-container-volumes.timer
+      enabled: true
+      daemon-reload: true

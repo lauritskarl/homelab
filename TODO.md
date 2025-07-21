@@ -1,6 +1,5 @@
 # TODO
 
-- [ ] Implement container volume backups
 - [ ] Set up this repo in gitea and push changes to github as well
 - [ ] Set up gitea actions
 - [ ] Automate tailscale authkey gen in terraform
@@ -13,7 +12,6 @@
 - [ ] Set up it-tools
 - [ ] Set up uptime-kuma
 - [ ] Set up beszel
-- [ ] Set up crowdsec
 - [ ] Set up hetzner s3 for terraform state backend
 - [ ] Set up terraform automation for hetzner, cloudflare, git, tailscale
 - [ ] Set up gitea actions for terraform
@@ -30,3 +28,4 @@
 - [x] Set up ansible vault to manage podman secrets
 - [x] Rename repo to iac
 - [x] Move container volume location to mounted volume
+- [x] Implement container volume backups
