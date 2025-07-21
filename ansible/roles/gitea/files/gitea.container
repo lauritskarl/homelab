@@ -9,6 +9,7 @@ Image=docker.gitea.com/gitea:latest
 AutoUpdate=registry
 ContainerName=gitea
 Network=ts-gitea.container
+Environment=GITEA__server__PUBLIC_URL_DETECTION=auto
 Volume=gitea-data.volume:/data:Z
 Volume=/etc/timezone:/etc/timezone:ro
 Volume=/etc/localtime:/etc/localtime:ro
