@@ -5,28 +5,21 @@
       state: latest
       update_cache: true
 
-- name: Ensure tailscale repository is present
-  ansible.builtin.yum_repository:
-      name: tailscale
-      description: Tailscale stable
-      baseurl: https://pkgs.tailscale.com/stable/fedora/$basearch
-      repo_gpgcheck: true
-      gpgcheck: true
-      gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
+# - name: Ensure tailscale repository is present
+# ansible.builtin.yum_repository:
+# name: tailscale
+# description: Tailscale stable
+# baseurl: https://pkgs.tailscale.com/stable/fedora/$basearch
+# repo_gpgcheck: true
+# gpgcheck: true
+# gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
 
 - name: Ensure essential packages are installed
   ansible.builtin.dnf:
       name:
           - firewalld
           - tailscale
-          - ansible
           - cifs-utils
-          - psmisc
-          - net-tools
-          - dnsutils
-          - vim-default-editor
-          - git
-          - gh
       state: latest
 
 - name: Ensure essential services are enabled and started
@@ -45,6 +38,15 @@
       state: present
   loop:
       - name: ansible
-        groups: wheel,root
+        groups: wheel
       - name: devops
         groups: wheel
+
+- name: Ensure passwordless sudo for wheel group
+  ansible.builtin.copy:
+      src: wheel
+      dest: /etc/sudoers.d/wheel
+      owner: root
+      group: root
+      mode: 0640
+      validate: "visudo -cf %s"

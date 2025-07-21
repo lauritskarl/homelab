@@ -7,12 +7,6 @@
       state: latest
       update_cache: true
 
-- name: Ensure external podman storage directory exists
-  ansible.builtin.file:
-      path: "/mnt/HC_Volume_102902324/containers/storage"
-      state: directory
-      mode: "0700"
-
 - name: Ensure custom podman storage configuration file is present
   ansible.builtin.copy:
       src: storage.conf

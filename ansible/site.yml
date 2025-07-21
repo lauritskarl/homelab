@@ -1,12 +1,12 @@
 ---
 - name: Homelab services deployment
-  hosts: localhost
+  hosts: cloudlab
   become: true
   vars_files:
       - vault.yml
   roles:
       - general
-      # - podman
+      - podman
       - pocket-id
       - gitea
       - bitwarden
