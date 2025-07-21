@@ -36,3 +36,4 @@
       - name: bw-admins
         data: "{{ bitwarden.bw_admins }}"
   no_log: true
+  notify: Restart Bitwarden service

@@ -25,3 +25,4 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
+  notify: Restart Dumbpad service

@@ -25,3 +25,4 @@
       name: "cf-tunnel-token"
       data: "{{ cloudflare.cf_tunnel_token }}"
   no_log: true
+  notify: Restart Pocket-id service
