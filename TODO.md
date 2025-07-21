@@ -1,13 +1,14 @@
 # TODO
 
-- [ ] Set up this repo in gitea and push changes to github as well
+- [ ] Set up mise to automate ansible, terraform and gitea-actions
+- [ ] Set up both yubikeys in hetzner and for git signing
+- [ ] Set up this repo in gitea and push changes to github as well (signed commits from scratch)
+- [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up gitea actions
 - [ ] Automate tailscale authkey gen in terraform
 - [ ] Set up ansible execution environment
-- [ ] Set up mise to automate ansible, terraform and gitea-actions
 - [ ] Set up Gitea Actions runner with Tailscale connectivity
 - [ ] Set up gitea actions for ansible including the execution environment
-- [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up stirling-pdf
 - [ ] Set up it-tools
 - [ ] Set up uptime-kuma
