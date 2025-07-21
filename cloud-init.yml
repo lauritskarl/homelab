@@ -23,6 +23,7 @@ write_files:
       mode: 0440
 runcmd:
     - ["systemctl", "enable", "--now", "firewalld.service"]
+    - ["systemctl", "enable", "--now", "dnf-automatic.timer"]
     - ["sh", "-c", "curl -fsSL https://tailscale.com/install.sh | sh"]
     - ["tailscale", "up", "--auth-key=xxx"]
     - ["tailscale", "set", "--ssh"]
