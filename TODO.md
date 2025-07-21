@@ -1,10 +1,11 @@
 # TODO
 
+- [ ] Implement container volume backups
+  - [ ] Move container volume location to mounted volume
 - [ ] Set up ansible execution environment
 - [ ] Set up mise to automate ansible, terraform and github-actions
 - [ ] Set up GitHub Actions runner with Tailscale connectivity
 - [ ] Set up github actions for ansible including the execution environment
-- [ ] Implement container volume backups
 - [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up stirling-pdf
 - [ ] Set up it-tools
