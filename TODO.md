@@ -3,8 +3,6 @@
 - [ ] Set up this repo in gitea and push changes to github as well
 - [ ] Set up gitea actions
 - [ ] Implement container volume backups
-  - [ ] Move container volume location to mounted volume
-- [ ] Rename repo to iac
 - [ ] Automate tailscale authkey gen in terraform
 - [ ] Set up ansible execution environment
 - [ ] Set up mise to automate ansible, terraform and gitea-actions
@@ -18,7 +16,7 @@
 - [ ] Set up crowdsec
 - [ ] Set up hetzner s3 for terraform state backend
 - [ ] Set up terraform automation for hetzner, cloudflare, git, tailscale
-- [ ] Set up github actions for terraform
+- [ ] Set up gitea actions for terraform
 - [ ] Set up ansible inventory using terraform
 - [ ] Configure Terraform to trigger Ansible playbooks post-provision
 - [ ] Set up fedora coreos using bootc and ignition
@@ -30,3 +28,5 @@
 - [x] Convert Bitwarden .env values to podman secrets
 - [x] Configure Cloudflare tunnel for Pocket-ID
 - [x] Set up ansible vault to manage podman secrets
+- [x] Rename repo to iac
+- [x] Move container volume location to mounted volume
