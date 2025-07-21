@@ -17,7 +17,7 @@
       - ts-dumbpad.container
       - ts-dumbpad-state.volume
       - dumbpad.json
-  notify: Restart Dumbpad service
+  notify: Reload Dumbpad service
 
 - name: Ensure dumbpad service secrets are available
   containers.podman.podman_secret:
@@ -25,4 +25,9 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Restart Dumbpad service
+  notify: Reload Dumbpad service
+
+- name: Ensure dumbpad service is started
+  ansible.builtin.systemd_service:
+      name: dumbpad-pod.service
+      state: started

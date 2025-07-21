@@ -18,7 +18,7 @@
       - ts-jellyfin.container
       - ts-jellyfin-state.volume
       - jellyfin.json
-  notify: Restart Jellyfin service
+  notify: Reload Jellyfin service
 
 - name: Ensure jellyfin service secrets are available
   containers.podman.podman_secret:
@@ -26,4 +26,9 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Restart Jellyfin service
+  notify: Reload Jellyfin service
+
+- name: Ensure jellyfin service is started
+  ansible.builtin.systemd_service:
+      name: jellyfin-pod.service
+      state: started

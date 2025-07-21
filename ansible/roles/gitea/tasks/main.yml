@@ -17,7 +17,7 @@
       - ts-gitea.container
       - ts-gitea-state.volume
       - gitea.json
-  notify: Restart Gitea service
+  notify: Reload Gitea service
 
 - name: Ensure gitea service secrets are available
   containers.podman.podman_secret:
@@ -25,4 +25,9 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Restart Gitea service
+  notify: Reload Gitea service
+
+- name: Ensure gitea service is started
+  ansible.builtin.systemd_service:
+      name: gitea-pod.service
+      state: started

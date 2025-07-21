@@ -1,6 +1,6 @@
 ---
-- name: Restart Searxng service
+- name: Reload Searxng service
   ansible.builtin.systemd_service:
       name: searxng-pod.service
-      state: restarted
+      state: reloaded
       daemon_reload: true

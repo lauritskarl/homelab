@@ -17,7 +17,7 @@
       - ts-memos.container
       - ts-memos-state.volume
       - memos.json
-  notify: Restart Memos service
+  notify: Reload Memos service
 
 - name: Ensure memos service secrets are available
   containers.podman.podman_secret:
@@ -25,4 +25,9 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Restart Memos service
+  notify: Reload Memos service
+
+- name: Ensure memos service is started
+  ansible.builtin.systemd_service:
+      name: memos-pod.service
+      state: started

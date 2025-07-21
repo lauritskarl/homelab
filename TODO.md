@@ -1,8 +1,8 @@
 # TODO
 
+- [ ] Implement container volume backups
 - [ ] Set up this repo in gitea and push changes to github as well
 - [ ] Set up gitea actions
-- [ ] Implement container volume backups
 - [ ] Automate tailscale authkey gen in terraform
 - [ ] Set up ansible execution environment
 - [ ] Set up mise to automate ansible, terraform and gitea-actions

@@ -1,6 +1,6 @@
 ---
-- name: Restart Dumbassets service
+- name: Reload Dumbassets service
   ansible.builtin.systemd_service:
       name: dumbassets-pod.service
-      state: restarted
+      state: reloaded
       daemon_reload: true

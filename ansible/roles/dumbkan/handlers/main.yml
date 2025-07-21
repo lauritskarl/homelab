@@ -1,6 +1,6 @@
 ---
-- name: Restart Dumbkan service
+- name: Reload Dumbkan service
   ansible.builtin.systemd_service:
       name: dumbkan-pod.service
-      state: restarted
+      state: reloaded
       daemon_reload: true

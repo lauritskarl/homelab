@@ -17,7 +17,7 @@
       - ts-dumbkan.container
       - ts-dumbkan-state.volume
       - dumbkan.json
-  notify: Restart Dumbkan service
+  notify: Reload Dumbkan service
 
 - name: Ensure dumbkan service secrets are available
   containers.podman.podman_secret:
@@ -25,4 +25,9 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Restart Dumbkan service
+  notify: Reload Dumbkan service
+
+- name: Ensure dumbkan service is started
+  ansible.builtin.systemd_service:
+      name: dumbkan-pod.service
+      state: started

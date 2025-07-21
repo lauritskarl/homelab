@@ -1,6 +1,6 @@
 ---
-- name: Restart Dumbbudget service
+- name: Reload Dumbbudget service
   ansible.builtin.systemd_service:
       name: dumbbudget-pod.service
-      state: restarted
+      state: reloaded
       daemon_reload: true

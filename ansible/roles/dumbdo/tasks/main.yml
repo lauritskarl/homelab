@@ -17,7 +17,7 @@
       - ts-dumbdo.container
       - ts-dumbdo-state.volume
       - dumbdo.json
-  notify: Restart Dumbdo service
+  notify: Reload Dumbdo service
 
 - name: Ensure dumbdo service secrets are available
   containers.podman.podman_secret:
@@ -25,4 +25,9 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Restart Dumbdo service
+  notify: Reload Dumbdo service
+
+- name: Ensure dumbdo service is started
+  ansible.builtin.systemd_service:
+      name: dumbdo-pod.service
+      state: started

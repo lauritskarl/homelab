@@ -1,6 +1,6 @@
 ---
-- name: Restart Dumbdo service
+- name: Reload Dumbdo service
   ansible.builtin.systemd_service:
       name: dumbdo-pod.service
-      state: restarted
+      state: reloaded
       daemon_reload: true

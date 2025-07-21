@@ -18,7 +18,7 @@
       - ts-searxng.container
       - ts-searxng-state.volume
       - searxng.json
-  notify: Restart Searxng service
+  notify: Reload Searxng service
 
 - name: Ensure searxng service secrets are available
   containers.podman.podman_secret:
@@ -26,4 +26,9 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Restart Searxng service
+  notify: Reload Searxng service
+
+- name: Ensure searxng service is started
+  ansible.builtin.systemd_service:
+      name: searxng-pod.service
+      state: started

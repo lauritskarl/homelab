@@ -1,6 +1,6 @@
 ---
-- name: Restart Bitwarden service
+- name: Reload Bitwarden service
   ansible.builtin.systemd_service:
       name: bitwarden-pod.service
-      state: restarted
+      state: reloaded
       daemon_reload: true
