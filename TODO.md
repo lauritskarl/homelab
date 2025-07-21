@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Rename repo to iac
+- [ ] Automate tailscale authkey gen in github actions
 - [ ] Set up ansible execution environment
 - [ ] Set up mise to automate ansible, terraform and github-actions
 - [ ] Set up GitHub Actions runner with Tailscale connectivity
