@@ -30,4 +30,3 @@
 - [x] Rename repo to iac
 - [x] Move container volume location to mounted volume
 - [x] Implement container volume backups
-- [x] Set up ssh key for git signing
