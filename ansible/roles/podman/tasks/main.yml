@@ -3,8 +3,6 @@
   ansible.builtin.dnf:
       name:
           - podman
-          - podman-compose
-          - podman-docker
           - podman-tui
       state: latest
       update_cache: true

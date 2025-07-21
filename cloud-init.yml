@@ -4,22 +4,12 @@ packages:
     - firewalld
     - ansible
     - podman
-    - podman-compose
-    - podman-docker
     - podman-tui
-    - cifs-utils
-    - psmisc
-    - net-tools
-    - dnsutils
     - vim-default-editor
     - git
     - gh
 users:
     - name: devops
-      groups: wheel
-      ssh-authorized-keys:
-          - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiYAIGJ3kMGsTYRl1Ho/pbrGf/GJAFwz9ULTSJAuO/S Karl's SSH Key"
-    - name: ansible
       groups: wheel
       ssh-authorized-keys:
           - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiYAIGJ3kMGsTYRl1Ho/pbrGf/GJAFwz9ULTSJAuO/S Karl's SSH Key"
@@ -30,9 +20,8 @@ write_files:
       owner: root
       group: root
       mode: 0440
-cmd:
+runcmd:
     - ["systemctl", "enable", "--now", "firewalld.service"]
-    - ["systemctl", "enable", "--now", "podman.socket"]
-    - ["systemctl", "enable", "--now", "podman-restart.service"]
-    - ["systemctl", "enable", "--now", "podman-auto-update.timer"]
-    - ["curl", "-fsSL", "https://tailscale.com/install.sh", "|", "sh"]
+    - ["sh", "-c", "curl -fsSL https://tailscale.com/install.sh | sh"]
+    - ["tailscale", "up", "--auth-key=xxx"]
+    - ["tailscale", "set", "--ssh"]
