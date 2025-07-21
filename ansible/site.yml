@@ -5,6 +5,7 @@
   vars_files:
       - vault.yml
   roles:
+      - general
       # - podman
       - pocket-id
       - gitea

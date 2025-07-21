@@ -1,0 +1,50 @@
+---
+- name: Ensure system is up-to-date
+  ansible.builtin.dnf:
+      name: "*"
+      state: latest
+      update_cache: true
+
+- name: Ensure tailscale repository is present
+  ansible.builtin.yum_repository:
+      name: tailscale
+      description: Tailscale stable
+      baseurl: https://pkgs.tailscale.com/stable/fedora/$basearch
+      repo_gpgcheck: true
+      gpgcheck: true
+      gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
+
+- name: Ensure essential packages are installed
+  ansible.builtin.dnf:
+      name:
+          - firewalld
+          - tailscale
+          - ansible
+          - cifs-utils
+          - psmisc
+          - net-tools
+          - dnsutils
+          - vim-default-editor
+          - git
+          - gh
+      state: latest
+
+- name: Ensure essential services are enabled and started
+  ansible.builtin.systemd_service:
+      name: "{{ item }}"
+      state: started
+      enabled: true
+  loop:
+      - firewalld
+      - tailscaled
+
+- name: Ensure essential users are present
+  ansible.builtin.user:
+      name: "{{ item.name }}"
+      groups: "{{ item.groups }}"
+      state: present
+  loop:
+      - name: ansible
+        groups: wheel,root
+      - name: devops
+        groups: wheel
