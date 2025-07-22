@@ -6,7 +6,6 @@
       - vault.yml
   roles:
       - common
-      - podman
       - pocket-id
       - gitea
       - bitwarden

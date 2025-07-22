@@ -1,20 +1,11 @@
 ---
-- name: Ensure system is up-to-date
+- name: Ensure system is updated
   ansible.builtin.dnf:
       name: "*"
       state: latest
       update_cache: true
 
-# - name: Ensure tailscale repository is present
-# ansible.builtin.yum_repository:
-# name: tailscale
-# description: Tailscale stable
-# baseurl: https://pkgs.tailscale.com/stable/fedora/$basearch
-# repo_gpgcheck: true
-# gpgcheck: true
-# gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
-
-- name: Ensure essential packages are installed
+- name: Ensure packages are installed
   ansible.builtin.dnf:
       name:
           - firewalld
@@ -27,28 +18,25 @@
           - pcp
           - python3-pcp
           - dnf-automatic
+          - podman
+          - podman-tui
       state: latest
 
-- name: Ensure cockpit is allowed in firewalld
-  ansible.posix.firewalld:
-      service: "{{ item }}"
-      state: enabled
-      permanent: true
-      immediate: true
-      offline: true
-  loop:
-      - cockpit
-      - pmproxy
-
-- name: Ensure dnf-automatic config file is present
+- name: Ensure dnf-automatic config is present
   ansible.builtin.copy:
       src: automatic.conf
       dest: /etc/dnf/dnf5-plugins/automatic.conf
-      owner: root
-      group: root
-      mode: 0644
+      mode: "0644"
 
-- name: Ensure essential services are enabled and started
+- name: Ensure podman storage config is present
+  ansible.builtin.copy:
+      src: storage.conf
+      dest: /usr/share/containers/storage.conf
+      mode: "0644"
+      backup: true
+  notify: Restart podman services
+
+- name: Ensure core services are started
   ansible.builtin.systemd_service:
       name: "{{ item }}"
       state: started
@@ -56,97 +44,92 @@
   loop:
       - firewalld.service
       - tailscaled.service
+
+- name: Ensure firewall services are allowed
+  ansible.posix.firewalld:
+      service: "{{ item }}"
+      state: enabled
+      permanent: true
+      immediate: true
+  loop:
+      - cockpit
+      - pmproxy
+
+- name: Ensure monitoring and container services are started
+  ansible.builtin.systemd_service:
+      name: "{{ item }}"
+      state: started
+      enabled: true
+  loop:
       - cockpit.socket
       - pmlogger.service
       - pmproxy.service
       - dnf-automatic.timer
+      - podman.socket
+      - podman-restart.service
+      - podman-auto-update.timer
 
-- name: Ensure essential users are present
+- name: Ensure system users are present
   ansible.builtin.user:
-      name: "{{ item.name }}"
-      groups: "{{ item.groups }}"
+      name: "{{ item }}"
+      groups: wheel
       state: present
-  loop:
-      - name: ansible
-        groups: wheel
-      - name: devops
-        groups: wheel
-      - name: karl
-        groups: wheel
+  loop: "{{ system_users }}"
 
 - name: Ensure passwordless sudo for wheel group
   ansible.builtin.copy:
       src: wheel
       dest: /etc/sudoers.d/wheel
-      owner: root
-      group: root
-      mode: 0640
+      mode: "0640"
       validate: "visudo -cf %s"
 
-- name: Ensure nas mount directory is present
+- name: Ensure NAS mount directory exists
   ansible.builtin.file:
       path: /mnt/nas
       state: directory
-      owner: root
-      group: root
-      mode: 0755
+      mode: "0755"
 
-- name: Ensure nas mount credentials file is present
+- name: Ensure NAS credentials file is present
   ansible.builtin.template:
       src: .credentials.j2
       dest: /root/.credentials
-      owner: root
-      group: root
-      mode: 0600
+      mode: "0600"
   notify:
       - Reload nas mount unit
 
-- name: Ensure nas mount unit is present
+- name: Ensure NAS mount unit is present
   ansible.builtin.template:
       src: mnt-nas.mount.j2
       dest: /etc/systemd/system/mnt-nas.mount
-      owner: root
-      group: root
-      mode: 0644
+      mode: "0644"
   notify:
       - Reload nas mount unit
 
-- name: Ensure nas mount unit is enabled and started
+- name: Ensure NAS is mounted
   ansible.builtin.systemd_service:
       name: mnt-nas.mount
       state: started
       enabled: true
-      daemon-reload: true
+      daemon_reload: true
 
-- name: Ensure container volumes backup directory is present
+- name: Ensure backup directory exists
   ansible.builtin.file:
       path: /mnt/nas/BACKUPS/containers/storage/volumes
       state: directory
-      owner: root
-      group: root
-      mode: 0755
+      mode: "0755"
 
-- name: Ensure container volumes backup script is present
+- name: Ensure backup script is present
   ansible.builtin.copy:
       src: backup-container-volumes.sh
       dest: /root/backup-container-volumes.sh
-      owner: root
-      group: root
-      mode: 0755
+      mode: "0755"
 
-- name: Ensure container volumes backup service and timer are present
+- name: Ensure backup systemd units are present
   ansible.builtin.copy:
       src: "{{ item }}"
       dest: /etc/systemd/system/{{ item }}
-      owner: root
-      group: root
-      mode: 0644
+      mode: "0644"
   loop:
       - backup-container-volumes.service
       - backup-container-volumes.timer
-
-- name: Ensure container volumes backup timer is enabled
-  ansible.builtin.systemd_service:
-      name: backup-container-volumes.timer
-      enabled: true
-      daemon-reload: true
+  notify: Enable backup timer

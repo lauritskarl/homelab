@@ -1,3 +1,4 @@
 *.retry
 .ansible/
 context/
+.vault_pass

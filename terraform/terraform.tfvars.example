@@ -1,0 +1,14 @@
+# Hetzner Cloud Configuration
+hcloud_token = "your-hetzner-cloud-api-token-here"
+
+# Cloudflare Configuration
+cloudflare_api_token = "your-cloudflare-api-token-here"
+cloudflare_zone_id   = "your-cloudflare-zone-id-here"
+
+# Server Configuration
+ssh_public_key   = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... your-public-key-here"
+server_type      = "cx22"        # 4 vCPU, 16GB RAM, 160GB NVMe
+server_location  = "nbg1"        # Nuremberg, Germany
+
+# DNS Configuration
+subdomain = "lab"                # Creates *.lab.yourdomain.com wildcard

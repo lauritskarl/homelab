@@ -1,0 +1,6 @@
+---
+# Basic system users (easier to modify in one place)
+system_users:
+  - ansible
+  - devops
+  - karl

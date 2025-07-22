@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] Set up specific versions for everything and renovate to update them
 - [ ] Set up stalwart mail server
 - [ ] Set up both yubikeys in hetzner and for git signing
 - [ ] Set up Linkding (or Karakeep?)
@@ -31,16 +32,3 @@
 - [ ] Set up fedora coreos using bootc and ignition
 - [ ] Set up rdpgw (open source microsoft remote gateway alternative)
 - [ ] Set up semaphore ui for ansible webui
-
-- [x] Change proxy network name to traefik.network
-- [x] Set up ansible roles for homelab services
-- [x] Rename serve-config.json files to service-specific naming (e.g., bitwarden.json)
-- [x] Convert Bitwarden .env values to podman secrets
-- [x] Configure Cloudflare tunnel for Pocket-ID
-- [x] Set up ansible vault to manage podman secrets
-- [x] Rename repo to iac
-- [x] Move container volume location to mounted volume
-- [x] Implement container volume backups
-- [x] Set up immich
-- [x] Check if immich tailscale cert is working
-- [x] Change all service handlers to restart instead of reload
