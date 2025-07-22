@@ -22,6 +22,7 @@
 - [ ] Set up it-tools
 - [ ] Set up uptime-kuma
 - [ ] Set up beszel
+- [ ] Set up openbao
 - [ ] Set up hetzner s3 for terraform state backend
 - [ ] Set up terraform automation for hetzner, cloudflare, git, tailscale
 - [ ] Set up gitea actions for terraform
