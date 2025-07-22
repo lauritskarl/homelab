@@ -1,11 +1,22 @@
 ---
-- name: Homelab services deployment
+- name: Cloudlab general setup
   hosts: cloudlab
   become: true
+  gather_facts: false
+  strategy: free
   vars_files:
       - vault.yml
   roles:
       - common
+
+- name: Cloudlab services deployment
+  hosts: cloudlab
+  become: true
+  gather_facts: false
+  strategy: free
+  vars_files:
+      - vault.yml
+  roles:
       - pocket-id
       - gitea
       - bitwarden
