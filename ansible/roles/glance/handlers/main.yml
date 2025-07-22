@@ -1,6 +1,6 @@
 ---
-- name: Reload Glance service
+- name: Restart Glance service
   ansible.builtin.systemd_service:
       name: glance-pod.service
-      state: reloaded
+      state: restarted
       daemon_reload: true

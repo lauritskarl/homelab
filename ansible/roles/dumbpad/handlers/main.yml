@@ -1,6 +1,6 @@
 ---
-- name: Reload Dumbpad service
+- name: Restart Dumbpad service
   ansible.builtin.systemd_service:
       name: dumbpad-pod.service
-      state: reloaded
+      state: restarted
       daemon_reload: true

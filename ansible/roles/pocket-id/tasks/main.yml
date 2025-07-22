@@ -17,7 +17,7 @@
       - pocket-id-data.volume
       - webfinger.container
       - webfinger
-  notify: Reload Pocket-id service
+  notify: Restart Pocket-id service
 
 - name: Ensure pocket-id service secrets are available
   containers.podman.podman_secret:
@@ -25,7 +25,7 @@
       name: "cf-tunnel-token"
       data: "{{ cloudflare.cf_tunnel_token }}"
   no_log: true
-  notify: Reload Pocket-id service
+  notify: Restart Pocket-id service
 
 - name: Ensure pocket-id service is started
   ansible.builtin.systemd_service:

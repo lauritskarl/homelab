@@ -17,7 +17,7 @@
       - ts-dumbbudget.container
       - ts-dumbbudget-state.volume
       - dumbbudget.json
-  notify: Reload Dumbbudget service
+  notify: Restart Dumbbudget service
 
 - name: Ensure dumbbudget service secrets are available
   containers.podman.podman_secret:
@@ -25,7 +25,7 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Reload Dumbbudget service
+  notify: Restart Dumbbudget service
 
 - name: Ensure dumbbudget service is started
   ansible.builtin.systemd_service:

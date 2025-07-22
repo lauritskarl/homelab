@@ -13,7 +13,7 @@
   loop:
       - tsidp.container
       - tsidp-data.volume
-  notify: Reload Tsidp service
+  notify: Restart Tsidp service
 
 - name: Ensure tsidp service secrets are available
   containers.podman.podman_secret:
@@ -21,7 +21,7 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Reload Tsidp service
+  notify: Restart Tsidp service
 
 - name: Ensure tsidp service is started
   ansible.builtin.systemd_service:

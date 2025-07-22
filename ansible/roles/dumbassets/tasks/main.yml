@@ -17,7 +17,7 @@
       - ts-dumbassets.container
       - ts-dumbassets-state.volume
       - dumbassets.json
-  notify: Reload Dumbassets service
+  notify: Restart Dumbassets service
 
 - name: Ensure dumbassets service secrets are available
   containers.podman.podman_secret:
@@ -25,7 +25,7 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Reload Dumbassets service
+  notify: Restart Dumbassets service
 
 - name: Ensure dumbassets service is started
   ansible.builtin.systemd_service:

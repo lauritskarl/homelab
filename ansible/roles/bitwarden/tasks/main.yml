@@ -17,7 +17,7 @@
       - ts-bitwarden.container
       - ts-bitwarden-state.volume
       - bitwarden.json
-  notify: Reload Bitwarden service
+  notify: Restart Bitwarden service
 
 - name: Ensure bitwarden service secrets are available
   containers.podman.podman_secret:
@@ -36,7 +36,7 @@
       - name: bw-admins
         data: "{{ bitwarden.bw_admins }}"
   no_log: true
-  notify: Reload Bitwarden service
+  notify: Restart Bitwarden service
 
 - name: Ensure bitwarden service is started
   ansible.builtin.systemd_service:

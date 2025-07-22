@@ -11,4 +11,4 @@ ContainerName=glance
 Network=ts-glance.container
 Volume=./config:/app/config:Z,ro
 Volume=./assets:/app/assets:Z,ro
-Volume=/var/run/docker.sock:/var/run/docker.sock:ro
+# Volume=/var/run/docker.sock:/var/run/docker.sock:ro

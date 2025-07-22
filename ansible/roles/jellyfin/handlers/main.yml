@@ -1,6 +1,6 @@
 ---
-- name: Reload Jellyfin service
+- name: Restart Jellyfin service
   ansible.builtin.systemd_service:
       name: jellyfin-pod.service
-      state: reloaded
+      state: restarted
       daemon_reload: true

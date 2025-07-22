@@ -16,7 +16,7 @@
       - ts-glance.container
       - ts-glance-state.volume
       - glance.json
-  notify: Reload Glance service
+  notify: Restart Glance service
 
 - name: Ensure glance assets and config files are in place
   ansible.builtin.copy:
@@ -26,7 +26,7 @@
   loop:
       - assets
       - config
-  notify: Reload Glance service
+  notify: Restart Glance service
 
 - name: Ensure glance service secrets are available
   containers.podman.podman_secret:
@@ -34,7 +34,7 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
-  notify: Reload Glance service
+  notify: Restart Glance service
 
 - name: Ensure glance service is started
   ansible.builtin.systemd_service:

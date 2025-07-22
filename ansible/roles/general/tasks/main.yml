@@ -21,15 +21,32 @@
           - tailscale
           - cifs-utils
           - cockpit
+          - cockpit-podman
+          - cockpit-selinux
+          - cockpit-files
+          - pcp
+          - python3-pcp
+          - dnf-automatic
       state: latest
 
 - name: Ensure cockpit is allowed in firewalld
   ansible.posix.firewalld:
-      service: cockpit
+      service: "{{ item }}"
       state: enabled
       permanent: true
       immediate: true
       offline: true
+  loop:
+      - cockpit
+      - pmproxy
+
+- name: Ensure dnf-automatic config file is present
+  ansible.builtin.copy:
+      src: automatic.conf
+      dest: /etc/dnf/dnf5-plugins/automatic.conf
+      owner: root
+      group: root
+      mode: 0644
 
 - name: Ensure essential services are enabled and started
   ansible.builtin.systemd_service:
@@ -40,6 +57,9 @@
       - firewalld.service
       - tailscaled.service
       - cockpit.socket
+      - pmlogger.service
+      - pmproxy.service
+      - dnf-automatic.timer
 
 - name: Ensure essential users are present
   ansible.builtin.user:
@@ -50,6 +70,8 @@
       - name: ansible
         groups: wheel
       - name: devops
+        groups: wheel
+      - name: karl
         groups: wheel
 
 - name: Ensure passwordless sudo for wheel group

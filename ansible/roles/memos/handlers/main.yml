@@ -1,6 +1,6 @@
 ---
-- name: Reload Memos service
+- name: Restart Memos service
   ansible.builtin.systemd_service:
       name: memos-pod.service
-      state: reloaded
+      state: restarted
       daemon_reload: true
