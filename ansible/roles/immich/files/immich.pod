@@ -1,0 +1,11 @@
+[Unit]
+Description=Immich Pod
+
+[Pod]
+PodName=immich
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

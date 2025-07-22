@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Check if immich tailscale cert is working
+- [ ] Change all service handlers to restart instead of reload
 - [ ] Set up mise to automate ansible, terraform and gitea-actions
 - [ ] Set up both yubikeys in hetzner and for git signing
 - [ ] Set up this repo in gitea and push changes to github as well (signed commits from scratch)
@@ -30,3 +32,4 @@
 - [x] Rename repo to iac
 - [x] Move container volume location to mounted volume
 - [x] Implement container volume backups
+- [x] Set up immich

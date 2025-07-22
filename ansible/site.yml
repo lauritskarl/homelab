@@ -13,6 +13,7 @@
       - searxng
       - memos
       - jellyfin
+      - immich
       - glance
       - dumbpad
       - dumbdo

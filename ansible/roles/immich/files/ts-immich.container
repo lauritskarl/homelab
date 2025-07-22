@@ -1,0 +1,17 @@
+[Unit]
+Description=Tailscale Container for Immich
+
+[Container]
+Pod=immich.pod
+Image=ghcr.io/tailscale/tailscale:latest
+AutoUpdate=registry
+ContainerName=ts-immich
+HostName=immich
+Secret=ts-authkey,type=env,target=TS_AUTHKEY
+Environment=TS_STATE_DIR=/var/lib/tailscale
+Environment=TS_USERSPACE=false
+Environment=TS_SERVE_CONFIG=/config/serve-config.json
+Volume=ts-immich-state.volume:/var/lib/tailscale:Z
+Volume=./immich.json:/config/serve-config.json:Z,ro
+AddDevice=/dev/net/tun:/dev/net/tun
+AddCapability=NET_ADMIN

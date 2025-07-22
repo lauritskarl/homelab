@@ -1,0 +1,21 @@
+[Unit]
+Description=Immich Server Container
+Requires=ts-immich.service immich-redis.service immich-postgres.service
+After=ts-immich.service immich-redis.service immich-postgres.service
+
+[Container]
+Pod=immich.pod
+Image=ghcr.io/immich-app/immich-server:release
+AutoUpdate=registry
+ContainerName=immich_server
+Network=ts-immich.container
+Environment=UPLOAD_LOCATION=/mnt/nas/PICTURES
+Environment=TZ=Europe/Tallinn
+Environment=IMMICH_VERSION=release
+Environment=DB_HOSTNAME=immich_postgres
+Environment=REDIS_HOSTNAME=immich_redis
+Secret=immich-db-password,type=env,target=DB_PASSWORD
+Secret=immich-db-username,type=env,target=DB_USERNAME
+Secret=immich-db-name,type=env,target=DB_DATABASE_NAME
+Volume=/mnt/nas/PICTURES:/usr/src/app/upload:z
+Volume=/etc/localtime:/etc/localtime:ro
