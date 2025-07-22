@@ -1,9 +1,16 @@
 # TODO
 
-- [ ] Check if immich tailscale cert is working
-- [ ] Change all service handlers to restart instead of reload
-- [ ] Set up mise to automate ansible, terraform and gitea-actions
+- [ ] Set up stalwart mail server
 - [ ] Set up both yubikeys in hetzner and for git signing
+- [ ] Set up Linkding (or Karakeep?)
+- [ ] Set up Donetick
+- [ ] Set up ActualBudget
+- [ ] Set up Audiobookshelf
+- [ ] Set up netbox
+- [ ] Set up outline or grist for excel / notion
+- [ ] Set up paperless-ngx
+- [ ] Set up rallly for meeting / scheduling
+- [ ] Set up mise to automate ansible, terraform and gitea-actions
 - [ ] Set up this repo in gitea and push changes to github as well (signed commits from scratch)
 - [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up gitea actions
@@ -21,7 +28,8 @@
 - [ ] Set up ansible inventory using terraform
 - [ ] Configure Terraform to trigger Ansible playbooks post-provision
 - [ ] Set up fedora coreos using bootc and ignition
-- [ ] Set up stalwart mail server
+- [ ] Set up rdpgw (open source microsoft remote gateway alternative)
+- [ ] Set up semaphore ui for ansible webui
 
 - [x] Change proxy network name to traefik.network
 - [x] Set up ansible roles for homelab services
@@ -33,3 +41,5 @@
 - [x] Move container volume location to mounted volume
 - [x] Implement container volume backups
 - [x] Set up immich
+- [x] Check if immich tailscale cert is working
+- [x] Change all service handlers to restart instead of reload
