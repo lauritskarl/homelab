@@ -3,24 +3,11 @@
   ansible.builtin.file:
       path: "/etc/containers/systemd/immich"
       state: directory
-      mode: "0755"
 
 - name: Ensure Immich service files are in place
   ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: "/etc/containers/systemd/immich/{{ item }}"
-      mode: "0644"
-  loop:
-      - immich.pod
-      - immich-server.container
-      - immich-postgres.container
-      - immich-postgres.volume
-      - immich-machine-learning.container
-      - immich-model-cache.volume
-      - immich-redis.container
-      - ts-immich.container
-      - ts-immich-state.volume
-      - immich.json
+      src: "immich/"
+      dest: "/etc/containers/systemd/immich/"
   notify: Restart Immich service
 
 - name: Ensure Immich service secrets are available
@@ -44,3 +31,4 @@
   ansible.builtin.systemd_service:
       name: immich-pod.service
       state: started
+      daemon_reload: true

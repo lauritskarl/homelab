@@ -26,13 +26,11 @@
   ansible.builtin.copy:
       src: automatic.conf
       dest: /etc/dnf/dnf5-plugins/automatic.conf
-      mode: "0644"
 
 - name: Ensure podman storage config is present
   ansible.builtin.copy:
       src: storage.conf
       dest: /usr/share/containers/storage.conf
-      mode: "0644"
       backup: true
   notify: Restart podman services
 
@@ -87,7 +85,6 @@
   ansible.builtin.file:
       path: /mnt/nas
       state: directory
-      mode: "0755"
 
 - name: Ensure NAS credentials file is present
   ansible.builtin.template:
@@ -101,7 +98,6 @@
   ansible.builtin.template:
       src: mnt-nas.mount.j2
       dest: /etc/systemd/system/mnt-nas.mount
-      mode: "0644"
   notify:
       - Reload nas mount unit
 
@@ -116,7 +112,6 @@
   ansible.builtin.file:
       path: /mnt/nas/BACKUPS/containers/storage/volumes
       state: directory
-      mode: "0755"
 
 - name: Ensure backup script is present
   ansible.builtin.copy:
@@ -128,7 +123,6 @@
   ansible.builtin.copy:
       src: "{{ item }}"
       dest: /etc/systemd/system/{{ item }}
-      mode: "0644"
   loop:
       - backup-container-volumes.service
       - backup-container-volumes.timer

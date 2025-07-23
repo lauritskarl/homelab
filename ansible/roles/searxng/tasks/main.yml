@@ -3,21 +3,11 @@
   ansible.builtin.file:
       path: "/etc/containers/systemd/searxng"
       state: directory
-      mode: "0755"
 
 - name: Ensure searxng service files are in place
   ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: "/etc/containers/systemd/searxng/{{ item }}"
-      mode: "0644"
-  loop:
-      - searxng.pod
-      - searxng.container
-      - searxng-config.volume
-      - searxng-data.volume
-      - ts-searxng.container
-      - ts-searxng-state.volume
-      - searxng.json
+      src: "searxng/"
+      dest: "/etc/containers/systemd/searxng/"
   notify: Restart Searxng service
 
 - name: Ensure searxng service secrets are available
@@ -32,3 +22,4 @@
   ansible.builtin.systemd_service:
       name: searxng-pod.service
       state: started
+      daemon_reload: true

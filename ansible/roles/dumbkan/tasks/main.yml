@@ -3,20 +3,11 @@
   ansible.builtin.file:
       path: "/etc/containers/systemd/dumbkan"
       state: directory
-      mode: "0755"
 
 - name: Ensure dumbkan service files are in place
   ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: "/etc/containers/systemd/dumbkan/{{ item }}"
-      mode: "0644"
-  loop:
-      - dumbkan.pod
-      - dumbkan.container
-      - dumbkan-data.volume
-      - ts-dumbkan.container
-      - ts-dumbkan-state.volume
-      - dumbkan.json
+      src: "dumbkan/"
+      dest: "/etc/containers/systemd/dumbkan/"
   notify: Restart Dumbkan service
 
 - name: Ensure dumbkan service secrets are available
@@ -31,3 +22,4 @@
   ansible.builtin.systemd_service:
       name: dumbkan-pod.service
       state: started
+      daemon_reload: true

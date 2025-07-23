@@ -2,7 +2,6 @@
 
 - [ ] Set up specific versions for everything and renovate to update them
 - [ ] Set up stalwart mail server
-- [ ] Set up both yubikeys in hetzner and for git signing
 - [ ] Set up Linkding (or Karakeep?)
 - [ ] Set up Donetick
 - [ ] Set up ActualBudget

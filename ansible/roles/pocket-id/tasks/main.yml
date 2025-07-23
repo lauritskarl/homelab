@@ -3,21 +3,12 @@
   ansible.builtin.file:
       path: "/etc/containers/systemd/pocket-id"
       state: directory
-      mode: "0755"
 
 - name: Ensure pocket-id service files are in place
   ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: "/etc/containers/systemd/pocket-id/{{ item }}"
-      mode: "0644"
-  loop:
-      - pocket-id.pod
-      - cloudflared.container
-      - pocket-id.container
-      - pocket-id-data.volume
-      - webfinger.container
-      - webfinger
-  notify: Restart Pocket-id service
+      src: "pocket-id/"
+      dest: "/etc/containers/systemd/pocket-id/"
+  notify: Restart Pocket ID service
 
 - name: Ensure pocket-id service secrets are available
   containers.podman.podman_secret:
@@ -25,9 +16,10 @@
       name: "cf-tunnel-token"
       data: "{{ cloudflare.cf_tunnel_token }}"
   no_log: true
-  notify: Restart Pocket-id service
+  notify: Restart Pocket ID service
 
 - name: Ensure pocket-id service is started
   ansible.builtin.systemd_service:
       name: pocket-id-pod.service
       state: started
+      daemon_reload: true

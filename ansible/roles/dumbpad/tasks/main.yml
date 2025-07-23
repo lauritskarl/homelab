@@ -3,20 +3,11 @@
   ansible.builtin.file:
       path: "/etc/containers/systemd/dumbpad"
       state: directory
-      mode: "0755"
 
 - name: Ensure dumbpad service files are in place
   ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: "/etc/containers/systemd/dumbpad/{{ item }}"
-      mode: "0644"
-  loop:
-      - dumbpad.pod
-      - dumbpad.container
-      - dumbpad-data.volume
-      - ts-dumbpad.container
-      - ts-dumbpad-state.volume
-      - dumbpad.json
+      src: "dumbpad/"
+      dest: "/etc/containers/systemd/dumbpad/"
   notify: Restart Dumbpad service
 
 - name: Ensure dumbpad service secrets are available
@@ -31,3 +22,4 @@
   ansible.builtin.systemd_service:
       name: dumbpad-pod.service
       state: started
+      daemon_reload: true

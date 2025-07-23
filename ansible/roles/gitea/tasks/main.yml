@@ -3,20 +3,11 @@
   ansible.builtin.file:
       path: "/etc/containers/systemd/gitea"
       state: directory
-      mode: "0755"
 
 - name: Ensure gitea service files are in place
   ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: "/etc/containers/systemd/gitea/{{ item }}"
-      mode: "0644"
-  loop:
-      - gitea.pod
-      - gitea.container
-      - gitea-data.volume
-      - ts-gitea.container
-      - ts-gitea-state.volume
-      - gitea.json
+      src: "gitea/"
+      dest: "/etc/containers/systemd/gitea/"
   notify: Restart Gitea service
 
 - name: Ensure gitea service secrets are available
@@ -31,3 +22,4 @@
   ansible.builtin.systemd_service:
       name: gitea-pod.service
       state: started
+      daemon_reload: true
