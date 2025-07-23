@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "dumbpad/"
       dest: "/etc/containers/systemd/dumbpad/"
+  register: dumbpad_files_changed
   notify: Restart Dumbpad service
 
 - name: Ensure dumbpad service secrets are available
@@ -16,10 +17,12 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
+  register: dumbpad_secrets_changed
   notify: Restart Dumbpad service
 
-- name: Ensure dumbpad service is started
+- name: Ensure dumbpad service is running
   ansible.builtin.systemd_service:
       name: dumbpad-pod.service
       state: started
       daemon_reload: true
+  when: not (dumbpad_files_changed.changed or dumbpad_secrets_changed.changed)

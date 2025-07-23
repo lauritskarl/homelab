@@ -8,7 +8,8 @@
   ansible.builtin.copy:
       src: "pocket-id/"
       dest: "/etc/containers/systemd/pocket-id/"
-  notify: Restart Pocket ID service
+  register: pocket_id_files_changed
+  notify: Restart Pocket-Id service
 
 - name: Ensure pocket-id service secrets are available
   containers.podman.podman_secret:
@@ -16,10 +17,12 @@
       name: "cf-tunnel-token"
       data: "{{ cloudflare.cf_tunnel_token }}"
   no_log: true
-  notify: Restart Pocket ID service
+  register: pocket_id_secrets_changed
+  notify: Restart Pocket-Id service
 
-- name: Ensure pocket-id service is started
+- name: Ensure pocket-id service is running
   ansible.builtin.systemd_service:
       name: pocket-id-pod.service
       state: started
       daemon_reload: true
+  when: not (pocket_id_files_changed.changed or pocket_id_secrets_changed.changed)

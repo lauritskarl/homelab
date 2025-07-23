@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "jellyfin/"
       dest: "/etc/containers/systemd/jellyfin/"
+  register: jellyfin_files_changed
   notify: Restart Jellyfin service
 
 - name: Ensure jellyfin service secrets are available
@@ -16,10 +17,12 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
+  register: jellyfin_secrets_changed
   notify: Restart Jellyfin service
 
-- name: Ensure jellyfin service is started
+- name: Ensure jellyfin service is running
   ansible.builtin.systemd_service:
       name: jellyfin-pod.service
       state: started
       daemon_reload: true
+  when: not (jellyfin_files_changed.changed or jellyfin_secrets_changed.changed)

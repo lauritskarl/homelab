@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "bitwarden/"
       dest: "/etc/containers/systemd/bitwarden/"
+  register: bitwarden_files_changed
   notify: Restart Bitwarden service
 
 - name: Ensure bitwarden service secrets are available
@@ -26,11 +27,13 @@
         data: "{{ bitwarden.bw_installation_key }}"
       - name: bw-admins
         data: "{{ bitwarden.bw_admins }}"
+  register: bitwarden_secrets_changed
   no_log: true
   notify: Restart Bitwarden service
 
-- name: Ensure bitwarden service is started
+- name: Ensure bitwarden service is running
   ansible.builtin.systemd_service:
       name: bitwarden-pod.service
       state: started
       daemon_reload: true
+  when: not (bitwarden_files_changed.changed or bitwarden_secrets_changed.changed)

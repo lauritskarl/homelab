@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "dumbkan/"
       dest: "/etc/containers/systemd/dumbkan/"
+  register: dumbkan_files_changed
   notify: Restart Dumbkan service
 
 - name: Ensure dumbkan service secrets are available
@@ -16,10 +17,12 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
+  register: dumbkan_secrets_changed
   notify: Restart Dumbkan service
 
-- name: Ensure dumbkan service is started
+- name: Ensure dumbkan service is running
   ansible.builtin.systemd_service:
       name: dumbkan-pod.service
       state: started
       daemon_reload: true
+  when: not (dumbkan_files_changed.changed or dumbkan_secrets_changed.changed)

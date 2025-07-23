@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "searxng/"
       dest: "/etc/containers/systemd/searxng/"
+  register: searxng_files_changed
   notify: Restart Searxng service
 
 - name: Ensure searxng service secrets are available
@@ -16,10 +17,12 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
+  register: searxng_secrets_changed
   notify: Restart Searxng service
 
-- name: Ensure searxng service is started
+- name: Ensure searxng service is running
   ansible.builtin.systemd_service:
       name: searxng-pod.service
       state: started
       daemon_reload: true
+  when: not (searxng_files_changed.changed or searxng_secrets_changed.changed)

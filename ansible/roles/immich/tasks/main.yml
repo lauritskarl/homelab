@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "immich/"
       dest: "/etc/containers/systemd/immich/"
+  register: immich_files_changed
   notify: Restart Immich service
 
 - name: Ensure Immich service secrets are available
@@ -24,11 +25,13 @@
         data: "{{ immich.db_username }}"
       - name: immich-db-name
         data: "{{ immich.db_name }}"
+  register: immich_secrets_changed
   no_log: true
   notify: Restart Immich service
 
-- name: Ensure Immich service is started
+- name: Ensure Immich service is running
   ansible.builtin.systemd_service:
       name: immich-pod.service
       state: started
       daemon_reload: true
+  when: not (immich_files_changed.changed or immich_secrets_changed.changed)

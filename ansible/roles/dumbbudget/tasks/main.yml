@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "dumbbudget/"
       dest: "/etc/containers/systemd/dumbbudget/"
+  register: dumbbudget_files_changed
   notify: Restart Dumbbudget service
 
 - name: Ensure dumbbudget service secrets are available
@@ -16,10 +17,12 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
+  register: dumbbudget_secrets_changed
   notify: Restart Dumbbudget service
 
-- name: Ensure dumbbudget service is started
+- name: Ensure dumbbudget service is running
   ansible.builtin.systemd_service:
       name: dumbbudget-pod.service
       state: started
       daemon_reload: true
+  when: not (dumbbudget_files_changed.changed or dumbbudget_secrets_changed.changed)

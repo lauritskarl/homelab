@@ -8,6 +8,7 @@
   ansible.builtin.copy:
       src: "gitea/"
       dest: "/etc/containers/systemd/gitea/"
+  register: gitea_files_changed
   notify: Restart Gitea service
 
 - name: Ensure gitea service secrets are available
@@ -16,10 +17,12 @@
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
+  register: gitea_secrets_changed
   notify: Restart Gitea service
 
-- name: Ensure gitea service is started
+- name: Ensure gitea service is running
   ansible.builtin.systemd_service:
       name: gitea-pod.service
       state: started
       daemon_reload: true
+  when: not (gitea_files_changed.changed or gitea_secrets_changed.changed)
