@@ -1,7 +1,7 @@
 # TODO
 
+- [x] Set up stalwart mail server
 - [ ] Set up specific versions for everything and renovate to update them
-- [ ] Set up stalwart mail server
 - [ ] Set up Linkding (or Karakeep?)
 - [ ] Set up Donetick
 - [ ] Set up ActualBudget

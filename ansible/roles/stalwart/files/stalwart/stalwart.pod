@@ -1,0 +1,21 @@
+[Unit]
+Description=Stalwart Pod
+
+[Pod]
+PodName=stalwart
+PublishPort=443:443
+PublishPort=8080:8080
+PublishPort=25:25
+#PublishPort=587:587
+PublishPort=465:465
+#PublishPort=143:143
+PublishPort=993:993
+#PublishPort=4190:4190
+#PublishPort=110:110
+#PublishPort=995:995
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

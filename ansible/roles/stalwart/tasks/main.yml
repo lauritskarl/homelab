@@ -1,0 +1,38 @@
+---
+- name: Ensure email services are allowed through firewall
+  ansible.posix.firewalld:
+      service: "{{ item }}"
+      state: enabled
+      permanent: true
+      immediate: true
+  loop:
+      - https
+      - smtp
+      - smtps
+      - imaps
+
+- name: Ensure email dashboard is allowed through firewall
+  ansible.posix.firewalld:
+      port: "8080/tcp"
+      state: enabled
+      permanent: true
+      immediate: true
+
+- name: Ensure stalwart folder exists
+  ansible.builtin.file:
+      path: "/etc/containers/systemd/stalwart"
+      state: directory
+
+- name: Ensure stalwart service files are in place
+  ansible.builtin.copy:
+      src: "stalwart/"
+      dest: "/etc/containers/systemd/stalwart/"
+  register: stalwart_files_changed
+  notify: Restart Stalwart service
+
+- name: Ensure stalwart service is running
+  ansible.builtin.systemd_service:
+      name: stalwart-pod.service
+      state: started
+      daemon_reload: true
+  when: not stalwart_files_changed.changed

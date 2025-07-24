@@ -18,6 +18,7 @@
       - vault.yml
   roles:
       - pocket-id
+      - stalwart
       - gitea
       - bitwarden
       - searxng
