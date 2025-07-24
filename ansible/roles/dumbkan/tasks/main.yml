@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/dumbkan"
       state: directory
 
-- name: Ensure dumbkan service files are in place
+- name: Ensure Dumbkan service files are in place
   ansible.builtin.copy:
       src: "dumbkan/"
       dest: "/etc/containers/systemd/dumbkan/"
   register: dumbkan_files_changed
   notify: Restart Dumbkan service
 
-- name: Ensure dumbkan service secrets are available
+- name: Ensure Dumbkan service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: dumbkan_secrets_changed
   notify: Restart Dumbkan service
 
-- name: Ensure dumbkan service is running
+- name: Ensure Dumbkan service is running
   ansible.builtin.systemd_service:
       name: dumbkan-pod.service
       state: started

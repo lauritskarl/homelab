@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/bitwarden"
       state: directory
 
-- name: Ensure bitwarden service files are in place
+- name: Ensure Bitwarden service files are in place
   ansible.builtin.copy:
       src: "bitwarden/"
       dest: "/etc/containers/systemd/bitwarden/"
   register: bitwarden_files_changed
   notify: Restart Bitwarden service
 
-- name: Ensure bitwarden service secrets are available
+- name: Ensure Bitwarden service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "{{ item.name }}"
@@ -43,7 +43,7 @@
   no_log: true
   notify: Restart Bitwarden service
 
-- name: Ensure bitwarden service is running
+- name: Ensure Bitwarden service is running
   ansible.builtin.systemd_service:
       name: bitwarden-pod.service
       state: started

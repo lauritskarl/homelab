@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/jellyfin"
       state: directory
 
-- name: Ensure jellyfin service files are in place
+- name: Ensure Jellyfin service files are in place
   ansible.builtin.copy:
       src: "jellyfin/"
       dest: "/etc/containers/systemd/jellyfin/"
   register: jellyfin_files_changed
   notify: Restart Jellyfin service
 
-- name: Ensure jellyfin service secrets are available
+- name: Ensure Jellyfin service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: jellyfin_secrets_changed
   notify: Restart Jellyfin service
 
-- name: Ensure jellyfin service is running
+- name: Ensure Jellyfin service is running
   ansible.builtin.systemd_service:
       name: jellyfin-pod.service
       state: started

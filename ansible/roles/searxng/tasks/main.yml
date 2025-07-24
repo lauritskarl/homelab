@@ -4,23 +4,23 @@
       path: "/etc/containers/systemd/searxng"
       state: directory
 
-- name: Ensure searxng service files are in place
+- name: Ensure SearXNG service files are in place
   ansible.builtin.copy:
       src: "searxng/"
       dest: "/etc/containers/systemd/searxng/"
   register: searxng_files_changed
-  notify: Restart Searxng service
+  notify: Restart SearXNG service
 
-- name: Ensure searxng service secrets are available
+- name: Ensure SearXNG service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
   register: searxng_secrets_changed
-  notify: Restart Searxng service
+  notify: Restart SearXNG service
 
-- name: Ensure searxng service is running
+- name: Ensure SearXNG service is running
   ansible.builtin.systemd_service:
       name: searxng-pod.service
       state: started

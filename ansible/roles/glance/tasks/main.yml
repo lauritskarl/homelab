@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/glance"
       state: directory
 
-- name: Ensure glance service files are in place
+- name: Ensure Glance service files are in place
   ansible.builtin.copy:
       src: "glance/"
       dest: "/etc/containers/systemd/glance/"
   register: glance_files_changed
   notify: Restart Glance service
 
-- name: Ensure glance service secrets are available
+- name: Ensure Glance service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: glance_secrets_changed
   notify: Restart Glance service
 
-- name: Ensure glance service is running
+- name: Ensure Glance service is running
   ansible.builtin.systemd_service:
       name: glance-pod.service
       state: started

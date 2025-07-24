@@ -1,26 +1,43 @@
 ---
-- name: Ensure gitea folder exists
+- name: Ensure Gitea folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/gitea"
       state: directory
 
-- name: Ensure gitea service files are in place
+- name: Ensure Gitea service files are in place
   ansible.builtin.copy:
       src: "gitea/"
       dest: "/etc/containers/systemd/gitea/"
   register: gitea_files_changed
   notify: Restart Gitea service
 
-- name: Ensure gitea service secrets are available
+- name: Ensure Gitea service secrets are available
   containers.podman.podman_secret:
       state: present
-      name: "ts-authkey"
-      data: "{{ tailscale.ts_authkey }}"
-  no_log: true
+      name: "{{ item.name }}"
+      data: "{{ item.data }}"
+  loop:
+      - name: ts-authkey
+        data: "{{ tailscale.ts_authkey }}"
+      - name: tea-mailer-enabled
+        data: "{{ gitea.tea_mailer_enabled }}"
+      - name: tea-mailer-protocol
+        data: "{{ gitea.tea_mailer_protocol }}"
+      - name: tea-mailer-smtp-addr
+        data: "{{ gitea.tea_mailer_smtp_addr }}"
+      - name: tea-mailer-smtp-port
+        data: "{{ gitea.tea_mailer_smtp_port }}"
+      - name: tea-mailer-user
+        data: "{{ gitea.tea_mailer_user }}"
+      - name: tea-mailer-passwd
+        data: "{{ gitea.tea_mailer_passwd }}"
+      - name: tea-mailer-from
+        data: "{{ gitea.tea_mailer_from }}"
   register: gitea_secrets_changed
+  no_log: true
   notify: Restart Gitea service
 
-- name: Ensure gitea service is running
+- name: Ensure Gitea service is running
   ansible.builtin.systemd_service:
       name: gitea-pod.service
       state: started

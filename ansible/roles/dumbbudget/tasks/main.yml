@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/dumbbudget"
       state: directory
 
-- name: Ensure dumbbudget service files are in place
+- name: Ensure Dumbbudget service files are in place
   ansible.builtin.copy:
       src: "dumbbudget/"
       dest: "/etc/containers/systemd/dumbbudget/"
   register: dumbbudget_files_changed
   notify: Restart Dumbbudget service
 
-- name: Ensure dumbbudget service secrets are available
+- name: Ensure Dumbbudget service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: dumbbudget_secrets_changed
   notify: Restart Dumbbudget service
 
-- name: Ensure dumbbudget service is running
+- name: Ensure Dumbbudget service is running
   ansible.builtin.systemd_service:
       name: dumbbudget-pod.service
       state: started

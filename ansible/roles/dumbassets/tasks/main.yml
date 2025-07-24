@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/dumbassets"
       state: directory
 
-- name: Ensure dumbassets service files are in place
+- name: Ensure Dumbassets service files are in place
   ansible.builtin.copy:
       src: "dumbassets/"
       dest: "/etc/containers/systemd/dumbassets/"
   register: dumbassets_files_changed
   notify: Restart Dumbassets service
 
-- name: Ensure dumbassets service secrets are available
+- name: Ensure Dumbassets service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: dumbassets_secrets_changed
   notify: Restart Dumbassets service
 
-- name: Ensure dumbassets service is running
+- name: Ensure Dumbassets service is running
   ansible.builtin.systemd_service:
       name: dumbassets-pod.service
       state: started

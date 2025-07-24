@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/memos"
       state: directory
 
-- name: Ensure memos service files are in place
+- name: Ensure Memos service files are in place
   ansible.builtin.copy:
       src: "memos/"
       dest: "/etc/containers/systemd/memos/"
   register: memos_files_changed
   notify: Restart Memos service
 
-- name: Ensure memos service secrets are available
+- name: Ensure Memos service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: memos_secrets_changed
   notify: Restart Memos service
 
-- name: Ensure memos service is running
+- name: Ensure Memos service is running
   ansible.builtin.systemd_service:
       name: memos-pod.service
       state: started

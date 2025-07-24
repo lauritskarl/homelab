@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/dumbpad"
       state: directory
 
-- name: Ensure dumbpad service files are in place
+- name: Ensure Dumbpad service files are in place
   ansible.builtin.copy:
       src: "dumbpad/"
       dest: "/etc/containers/systemd/dumbpad/"
   register: dumbpad_files_changed
   notify: Restart Dumbpad service
 
-- name: Ensure dumbpad service secrets are available
+- name: Ensure Dumbpad service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: dumbpad_secrets_changed
   notify: Restart Dumbpad service
 
-- name: Ensure dumbpad service is running
+- name: Ensure Dumbpad service is running
   ansible.builtin.systemd_service:
       name: dumbpad-pod.service
       state: started

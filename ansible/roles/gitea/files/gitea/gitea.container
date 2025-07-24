@@ -10,6 +10,13 @@ AutoUpdate=registry
 ContainerName=gitea
 Network=ts-gitea.container
 Environment=GITEA__server__PUBLIC_URL_DETECTION=auto
+Secret=tea-mailer-enabled,type=env,target=GITEA__mailer__ENABLED
+Secret=tea-mailer-protocol,type=env,target=GITEA__mailer__PROTOCOL
+Secret=tea-mailer-smtp-addr,type=env,target=GITEA__mailer__SMTP_ADDR
+Secret=tea-mailer-smtp-port,type=env,target=GITEA__mailer__SMTP_PORT
+Secret=tea-mailer-user,type=env,target=GITEA__mailer__USER
+Secret=tea-mailer-passwd,type=env,target=GITEA__mailer__PASSWD
+Secret=tea-mailer-from,type=env,target=GITEA__mailer__FROM
 Volume=gitea-data.volume:/data:Z
 Volume=/etc/timezone:/etc/timezone:ro
 Volume=/etc/localtime:/etc/localtime:ro

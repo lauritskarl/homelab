@@ -4,14 +4,14 @@
       path: "/etc/containers/systemd/dumbdo"
       state: directory
 
-- name: Ensure dumbdo service files are in place
+- name: Ensure Dumbdo service files are in place
   ansible.builtin.copy:
       src: "dumbdo/"
       dest: "/etc/containers/systemd/dumbdo/"
   register: dumbdo_files_changed
   notify: Restart Dumbdo service
 
-- name: Ensure dumbdo service secrets are available
+- name: Ensure Dumbdo service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
@@ -20,7 +20,7 @@
   register: dumbdo_secrets_changed
   notify: Restart Dumbdo service
 
-- name: Ensure dumbdo service is running
+- name: Ensure Dumbdo service is running
   ansible.builtin.systemd_service:
       name: dumbdo-pod.service
       state: started
