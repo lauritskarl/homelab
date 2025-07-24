@@ -14,4 +14,10 @@ Secret=bw-domain,type=env,target=BW_DOMAIN
 Secret=bw-installation-id,type=env,target=BW_INSTALLATION_ID
 Secret=bw-installation-key,type=env,target=BW_INSTALLATION_KEY
 Secret=bw-admins,type=env,target=adminSettings__admins
+Secret=bw-reply-to-email,type=env,target=globalSettings__mail__replyToEmail
+Secret=bw-smtp-host,type=env,target=globalSettings__mail__smtp__host
+Secret=bw-smtp-port,type=env,target=globalSettings__mail__smtp__port
+Secret=bw-smtp-ssl,type=env,target=globalSettings__mail__smtp__ssl
+Secret=bw-smtp-username,type=env,target=globalSettings__mail__smtp__username
+Secret=bw-smtp-password,type=env,target=globalSettings__mail__smtp__password
 Volume=bitwarden-data.volume:/etc/bitwarden:Z

@@ -6,8 +6,20 @@ Pod=pocket-id.pod
 Image=ghcr.io/pocket-id/pocket-id:latest
 AutoUpdate=registry
 ContainerName=pocket-id
-Environment=APP_URL=https://id.solisec.org
-Environment=TRUST_PROXY=true
+Secret=id-app-url,type=env,target=APP_URL
+Secret=id-trust-proxy,type=env,target=TRUST_PROXY
+Secret=id-emails-verified,type=env,target=EMAILS_VERIFIED
+Secret=id-allow-user-signups,type=env,target=ALLOW_USER_SIGNUPS
+Secret=id-disable-animations,type=env,target=DISABLE_ANIMATIONS
+Secret=id-smtp-host,type=env,target=SMTP_HOST
+Secret=id-smtp-port,type=env,target=SMTP_PORT
+Secret=id-smtp-from,type=env,target=SMTP_FROM
+Secret=id-smtp-user,type=env,target=SMTP_USER
+Secret=id-smtp-password,type=env,target=SMTP_PASSWORD
+Secret=id-smtp-tls,type=env,target=SMTP_TLS
+Secret=id-email-login-notification-enabled,type=env,target=EMAIL_LOGIN_NOTIFICATION_ENABLED
+Secret=id-email-one-time-access-as-admin-enabled,type=env,target=EMAIL_ONE_TIME_ACCESS_AS_ADMIN_ENABLED
+Secret=id-email-api-key-expiration-enabled,type=env,target=EMAIL_API_KEY_EXPIRATION_ENABLED
 Volume=pocket-id-data.volume:/app/data:Z
 HealthCmd=/app/pocket-id healthcheck
 HealthInterval=1m30s
