@@ -1,6 +1,6 @@
 # TODO
 
-- [x] Set up stalwart mail server
+- [ ] Secure stalwart dashboard (8080)
 - [ ] Set up specific versions for everything and renovate to update them
 - [ ] Set up Linkding (or Karakeep?)
 - [ ] Set up Donetick
