@@ -6,6 +6,4 @@ Pod=stalwart.pod
 Image=docker.io/stalwartlabs/stalwart:latest
 AutoUpdate=registry
 ContainerName=stalwart
-Volume=stalwart-data.volume:/opt/stalwart/data:Z
-Volume=stalwart-logs.volume:/opt/stalwart/logs:Z
-Volume=./config.toml:/opt/stalwart/etc/config.toml:Z
+Volume=stalwart-data.volume:/opt/stalwart:Z

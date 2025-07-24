@@ -1,17 +1,17 @@
 ---
-- name: Ensure pocket-id folder exists
+- name: Ensure Pocket ID folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/pocket-id"
       state: directory
 
-- name: Ensure pocket-id service files are in place
+- name: Ensure Pocket ID service files are in place
   ansible.builtin.copy:
       src: "pocket-id/"
       dest: "/etc/containers/systemd/pocket-id/"
   register: pocket_id_files_changed
-  notify: Restart Pocket-Id service
+  notify: Restart Pocket ID service
 
-- name: Ensure pocket-id service secrets are available
+- name: Ensure Pocket ID service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "{{ item.name }}"
@@ -49,9 +49,9 @@
         data: "{{ pocketid.id_email_api_key_expiration_enabled }}"
   no_log: true
   register: pocket_id_secrets_changed
-  notify: Restart Pocket-Id service
+  notify: Restart Pocket ID service
 
-- name: Ensure pocket-id service is running
+- name: Ensure Pocket ID service is running
   ansible.builtin.systemd_service:
       name: pocket-id-pod.service
       state: started
