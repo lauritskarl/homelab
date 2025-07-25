@@ -33,7 +33,7 @@
       src: automatic.conf
       dest: /etc/dnf/automatic.conf
 
-- name: Ensure core services are started
+- name: Ensure systemd services are started
   ansible.builtin.systemd_service:
       name: "{{ item }}"
       state: started
@@ -41,6 +41,13 @@
   loop:
       - firewalld.service
       - tailscaled.service
+      - cockpit.socket
+      - pmlogger.service
+      - pmproxy.service
+      - dnf-automatic.timer
+      - podman.socket
+      - podman-restart.service
+      - podman-auto-update.timer
 
 - name: Ensure firewall services are allowed
   ansible.posix.firewalld:
@@ -52,19 +59,12 @@
       - cockpit
       - pmproxy
 
-- name: Ensure monitoring and container services are started
-  ansible.builtin.systemd_service:
-      name: "{{ item }}"
-      state: started
-      enabled: true
-  loop:
-      - cockpit.socket
-      - pmlogger.service
-      - pmproxy.service
-      - dnf-automatic.timer
-      - podman.socket
-      - podman-restart.service
-      - podman-auto-update.timer
+- name: Ensure passwordless sudo for wheel group
+  ansible.builtin.copy:
+      src: wheel
+      dest: /etc/sudoers.d/wheel
+      mode: "0640"
+      validate: "visudo -cf %s"
 
 - name: Ensure system users are present
   ansible.builtin.user:
@@ -72,13 +72,6 @@
       groups: wheel
       state: present
   loop: "{{ system_users }}"
-
-- name: Ensure passwordless sudo for wheel group
-  ansible.builtin.copy:
-      src: wheel
-      dest: /etc/sudoers.d/wheel
-      mode: "0640"
-      validate: "visudo -cf %s"
 
 - name: Ensure NAS mount directory exists
   ansible.builtin.file:
@@ -100,7 +93,7 @@
   notify:
       - Reload nas mount unit
 
-- name: Ensure NAS is mounted
+- name: Ensure nas share is mounted
   ansible.builtin.systemd_service:
       name: mnt-nas.mount
       state: started
@@ -112,23 +105,14 @@
       path: /mnt/nas/BACKUPS/containers/storage/volumes
       state: directory
 
-- name: Ensure backup script is present
+- name: Ensure scripts are present
   ansible.builtin.copy:
-      src: backup-container-volumes.sh
-      dest: /root/backup-container-volumes.sh
+      src: scripts/
+      dest: /root/scripts/
       mode: "0755"
 
-- name: Ensure restore script is present
+- name: Ensure systemd units are present
   ansible.builtin.copy:
-      src: restore-container-volumes.sh
-      dest: /root/restore-container-volumes.sh
-      mode: "0755"
-
-- name: Ensure backup systemd units are present
-  ansible.builtin.copy:
-      src: "{{ item }}"
-      dest: /etc/systemd/system/{{ item }}
-  loop:
-      - backup-container-volumes.service
-      - backup-container-volumes.timer
+      src: systemd/
+      dest: /etc/systemd/system/
   notify: Enable backup timer
