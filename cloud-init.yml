@@ -2,18 +2,9 @@
 package_upgrade: true
 packages:
     - firewalld
-    - ansible
-    - podman
-    - podman-tui
-    - vim-default-editor
-    - git
-    - gh
-    - dnf-automatic
 users:
     - name: devops
       groups: wheel
-      ssh-authorized-keys:
-          - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMiYAIGJ3kMGsTYRl1Ho/pbrGf/GJAFwz9ULTSJAuO/S Karl's SSH Key"
 write_files:
     - path: /etc/sudoers.d/wheel
       content: |
@@ -23,7 +14,6 @@ write_files:
       mode: 0440
 runcmd:
     - ["systemctl", "enable", "--now", "firewalld.service"]
-    - ["systemctl", "enable", "--now", "dnf-automatic.timer"]
     - ["sh", "-c", "curl -fsSL https://tailscale.com/install.sh | sh"]
-    - ["tailscale", "up", "--auth-key=xxx"]
+    - ["tailscale", "up", "--auth-key=TAILSCALE_AUTH_KEY"]
     - ["tailscale", "set", "--ssh"]

@@ -36,7 +36,7 @@ podman volume export ts-gitea-state --output=/mnt/nas/BACKUPS/containers/storage
 podman volume export ts-glance-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-glance-state.tar
 
 # Backup immich volumes
-podman volume export immich-db --output=/mnt/nas/BACKUPS/containers/storage/volumes/immich-db.tar
+podman volume export immich-postgres --output=/mnt/nas/BACKUPS/containers/storage/volumes/immich-postgres.tar
 podman volume export immich-redis --output=/mnt/nas/BACKUPS/containers/storage/volumes/immich-redis.tar
 podman volume export immich-model-cache --output=/mnt/nas/BACKUPS/containers/storage/volumes/immich-model-cache.tar
 podman volume export ts-immich-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-immich-state.tar
@@ -54,6 +54,9 @@ podman volume export ts-memos-state --output=/mnt/nas/BACKUPS/containers/storage
 podman volume export searxng-config --output=/mnt/nas/BACKUPS/containers/storage/volumes/searxng-config.tar
 podman volume export searxng-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/searxng-data.tar
 podman volume export ts-searxng-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-searxng-state.tar
+
+# Backup stalwart volumes
+podman volume export stalwart-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/stalwart-data.tar
 
 # Backup tsidp volumes (commented out - role is disabled)
 # podman volume export tsidp-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/tsidp-data.tar

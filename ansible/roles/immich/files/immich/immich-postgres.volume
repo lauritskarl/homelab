@@ -1,2 +1,2 @@
 [Volume]
-VolumeName=immich-db
+VolumeName=immich-postgres

@@ -1,6 +1,6 @@
 ---
-- name: Cloudlab server setup
-  hosts: cloudlab
+- name: Server setup
+  hosts: lab
   become: true
   gather_facts: false
   vars_files:

@@ -23,22 +23,15 @@
           - cockpit-files
           - pcp
           - python3-pcp
+          - tuned
           - dnf-automatic
           - podman
-          - podman-tui
       state: latest
 
 - name: Ensure dnf-automatic config is present
   ansible.builtin.copy:
       src: automatic.conf
-      dest: /etc/dnf/dnf5-plugins/automatic.conf
-
-- name: Ensure podman storage config is present
-  ansible.builtin.copy:
-      src: storage.conf
-      dest: /usr/share/containers/storage.conf
-      backup: true
-  notify: Restart podman services
+      dest: /etc/dnf/automatic.conf
 
 - name: Ensure core services are started
   ansible.builtin.systemd_service:
@@ -56,7 +49,7 @@
       permanent: true
       immediate: true
   loop:
-      # - cockpit
+      - cockpit
       - pmproxy
 
 - name: Ensure monitoring and container services are started
@@ -123,6 +116,12 @@
   ansible.builtin.copy:
       src: backup-container-volumes.sh
       dest: /root/backup-container-volumes.sh
+      mode: "0755"
+
+- name: Ensure restore script is present
+  ansible.builtin.copy:
+      src: restore-container-volumes.sh
+      dest: /root/restore-container-volumes.sh
       mode: "0755"
 
 - name: Ensure backup systemd units are present
