@@ -12,7 +12,6 @@
 - [ ] Set up outline or grist for excel / notion
 - [ ] Set up paperless-ngx
 - [ ] Set up rallly for meeting / scheduling
-- [ ] Set up mise to automate ansible, terraform and gitea-actions
 - [ ] Set up this repo in gitea and push changes to github as well (signed commits from scratch)
 - [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up gitea actions
