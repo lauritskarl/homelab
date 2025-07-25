@@ -56,7 +56,7 @@
       permanent: true
       immediate: true
   loop:
-      - cockpit
+      # - cockpit
       - pmproxy
 
 - name: Ensure monitoring and container services are started

@@ -14,7 +14,7 @@
 - name: Ensure email dashboard is allowed through firewall
   ansible.posix.firewalld:
       port: "8080/tcp"
-      state: enabled
+      state: disabled
       permanent: true
       immediate: true
 
