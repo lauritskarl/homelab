@@ -1,0 +1,4 @@
+[tools]
+openbao = "latest"
+opentofu = "latest"
+"pipx:ansible" = "latest"
