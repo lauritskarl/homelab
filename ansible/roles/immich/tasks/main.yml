@@ -11,6 +11,13 @@
   register: immich_files_changed
   notify: Restart Immich service
 
+- name: Ensure Immich config file is in place
+  ansible.builtin.template:
+      src: "immich.json.j2"
+      dest: "/etc/containers/systemd/immich/immich.json"
+  register: immich_files_changed
+  notify: Restart Immich service
+
 - name: Ensure Immich service secrets are available
   containers.podman.podman_secret:
       state: present
@@ -19,12 +26,14 @@
   loop:
       - name: ts-authkey
         data: "{{ tailscale.ts_authkey }}"
-      - name: immich-db-password
-        data: "{{ immich.db_password }}"
-      - name: immich-db-username
-        data: "{{ immich.db_username }}"
+      - name: immich-db-hostname
+        data: "{{ immich.db_hostname }}"
       - name: immich-db-name
         data: "{{ immich.db_name }}"
+      - name: immich-db-username
+        data: "{{ immich.db_username }}"
+      - name: immich-db-password
+        data: "{{ immich.db_password }}"
   register: immich_secrets_changed
   no_log: true
   notify: Restart Immich service

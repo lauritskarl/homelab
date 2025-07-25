@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] Fix ansible vault secret names (unnecessary prefixes like tea_)
 - [ ] Secure stalwart dashboard (8080)
 - [ ] Implement health checks for all services
 - [ ] Set up specific versions for everything and renovate to update them

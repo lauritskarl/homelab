@@ -11,11 +11,12 @@ ContainerName=immich_server
 Network=ts-immich.container
 Environment=UPLOAD_LOCATION=/mnt/nas/PICTURES
 Environment=TZ=Europe/Tallinn
-Environment=IMMICH_VERSION=release
-Environment=DB_HOSTNAME=immich_postgres
+Environment=IMMICH_CONFIG_FILE=/config/immich.json
 Environment=REDIS_HOSTNAME=immich_redis
-Secret=immich-db-password,type=env,target=DB_PASSWORD
-Secret=immich-db-username,type=env,target=DB_USERNAME
+Secret=immich-db-hostname,type=env,target=DB_HOSTNAME
 Secret=immich-db-name,type=env,target=DB_DATABASE_NAME
+Secret=immich-db-username,type=env,target=DB_USERNAME
+Secret=immich-db-password,type=env,target=DB_PASSWORD
 Volume=/mnt/nas/PICTURES:/usr/src/app/upload:z
+Volume=./immich.json:/config/immich.json:Z,ro
 Volume=/etc/localtime:/etc/localtime:ro

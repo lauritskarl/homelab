@@ -5,6 +5,12 @@
       state: latest
       update_cache: true
 
+- name: Ensure tailscale repo is added
+  ansible.builtin.command:
+      cmd: dnf config-manager addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+  args:
+      creates: /etc/yum.repos.d/tailscale.repo
+
 - name: Ensure packages are installed
   ansible.builtin.dnf:
       name:

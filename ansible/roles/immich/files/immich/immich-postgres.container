@@ -6,6 +6,7 @@ Pod=immich.pod
 Image=ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
 AutoUpdate=registry
 ContainerName=immich_postgres
+#Environment=DB_DATA_LOCATION=
 Environment=POSTGRES_INITDB_ARGS=--data-checksums
 Secret=immich-db-password,type=env,target=POSTGRES_PASSWORD
 Secret=immich-db-username,type=env,target=POSTGRES_USER
