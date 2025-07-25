@@ -1,6 +1,5 @@
 # TODO
 
-- [ ] Switch to using server backups + internal storage (move set up new server, import podman volumes from volume, delete volume)
 - [ ] Fix ansible vault secret names (unnecessary prefixes like tea_)
 - [ ] Implement health checks for all services
 - [ ] Set up specific versions for everything and renovate to update them
