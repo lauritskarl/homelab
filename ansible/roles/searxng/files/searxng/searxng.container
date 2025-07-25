@@ -5,7 +5,7 @@ After=ts-searxng.service
 
 [Container]
 Pod=searxng.pod
-Image=docker.io/searxng/searxng:latest
+Image=ghcr.io/searxng/searxng:latest
 AutoUpdate=registry
 ContainerName=searxng
 Network=ts-searxng.container
