@@ -1,5 +1,5 @@
 ---
-- name: Ensure glance folder exists
+- name: Ensure Glance folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/glance"
       state: directory

@@ -1,5 +1,5 @@
 ---
-- name: Ensure immich folder exists
+- name: Ensure Immich folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/immich"
       state: directory

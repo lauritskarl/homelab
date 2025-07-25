@@ -1,5 +1,5 @@
 ---
-- name: Ensure dumbpad folder exists
+- name: Ensure Dumbpad folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/dumbpad"
       state: directory

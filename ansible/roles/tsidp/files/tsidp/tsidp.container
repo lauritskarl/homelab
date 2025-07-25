@@ -1,5 +1,5 @@
 [Unit]
-Description=TSIDP Container
+Description=tsidp Container
 
 [Container]
 Image=ghcr.io/lauritskarl/tsidp:v0.0.1

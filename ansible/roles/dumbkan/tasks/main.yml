@@ -1,5 +1,5 @@
 ---
-- name: Ensure dumbkan folder exists
+- name: Ensure Dumbkan folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/dumbkan"
       state: directory

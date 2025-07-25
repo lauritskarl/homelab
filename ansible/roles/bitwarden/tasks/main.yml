@@ -1,5 +1,5 @@
 ---
-- name: Ensure bitwarden folder exists
+- name: Ensure Bitwarden folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/bitwarden"
       state: directory

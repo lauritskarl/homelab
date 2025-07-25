@@ -1,5 +1,5 @@
 ---
-- name: Ensure dumbdo folder exists
+- name: Ensure Dumbdo folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/dumbdo"
       state: directory

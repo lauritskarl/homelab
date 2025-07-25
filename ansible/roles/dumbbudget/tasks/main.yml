@@ -1,5 +1,5 @@
 ---
-- name: Ensure dumbbudget folder exists
+- name: Ensure Dumbbudget folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/dumbbudget"
       state: directory

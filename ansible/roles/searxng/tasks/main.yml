@@ -1,5 +1,5 @@
 ---
-- name: Ensure searxng folder exists
+- name: Ensure SearXNG folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/searxng"
       state: directory

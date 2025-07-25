@@ -4,23 +4,23 @@
       path: "/etc/containers/systemd/tsidp"
       state: directory
 
-- name: Ensure Tsidp service files are in place
+- name: Ensure tsidp service files are in place
   ansible.builtin.copy:
       src: "tsidp/"
       dest: "/etc/containers/systemd/tsidp/"
   register: tsidp_files_changed
-  notify: Restart Tsidp service
+  notify: Restart tsidp service
 
-- name: Ensure Tsidp service secrets are available
+- name: Ensure tsidp service secrets are available
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
       data: "{{ tailscale.ts_authkey }}"
   no_log: true
   register: tsidp_secrets_changed
-  notify: Restart Tsidp service
+  notify: Restart tsidp service
 
-- name: Ensure Tsidp service is running
+- name: Ensure tsidp service is running
   ansible.builtin.systemd_service:
       name: tsidp-pod.service
       state: started

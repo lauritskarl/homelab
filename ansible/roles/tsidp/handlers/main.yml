@@ -1,5 +1,5 @@
 ---
-- name: Restart Tsidp service
+- name: Restart tsidp service
   ansible.builtin.systemd_service:
       name: tsidp-pod.service
       state: restarted

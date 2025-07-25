@@ -11,13 +11,6 @@
       - smtps
       - imaps
 
-- name: Ensure email dashboard is allowed through firewall
-  ansible.posix.firewalld:
-      port: "8080/tcp"
-      state: disabled
-      permanent: true
-      immediate: true
-
 - name: Ensure stalwart folder exists
   ansible.builtin.file:
       path: "/etc/containers/systemd/stalwart"
