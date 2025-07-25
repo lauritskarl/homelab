@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] Add this selinux config to lab machine (setsebool -P virt_use_samba 1) aka "Allow virt to use samba"
 - [ ] Fix ansible vault secret names (unnecessary prefixes like tea_)
 - [ ] Implement health checks for all services
 - [ ] Set up specific versions for everything and renovate to update them
