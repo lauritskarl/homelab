@@ -1,0 +1,8 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/ubuntu/base:latest",
+  "runArgs": ["--device=/dev/net/tun"],
+  "features": {
+    "ghcr.io/tailscale/codespace/tailscale": {},
+    "ghcr.io/devcontainers-extra/features/mise:1": {}
+  }
+}
