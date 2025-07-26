@@ -9,6 +9,7 @@ Image=docker.gitea.com/gitea:latest
 AutoUpdate=registry
 ContainerName=gitea
 Network=ts-gitea.container
+Environment=GITEA__server__SSH_PORT=2222
 Environment=GITEA__server__PUBLIC_URL_DETECTION=auto
 Secret=tea-mailer-enabled,type=env,target=GITEA__mailer__ENABLED
 Secret=tea-mailer-protocol,type=env,target=GITEA__mailer__PROTOCOL
