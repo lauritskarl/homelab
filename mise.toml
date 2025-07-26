@@ -6,7 +6,6 @@ experimental = true
 uv_venv_auto = true
 
 [tools]
-ansible = "latest"
 github-cli = "latest"
 openbao = "latest"
 opentofu = "latest"
