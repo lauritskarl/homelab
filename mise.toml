@@ -5,13 +5,5 @@ experimental = true
 [settings.python]
 uv_venv_auto = true
 
-[tools]
-github-cli = "latest"
-openbao = "latest"
-opentofu = "latest"
-pipx = "latest"
-usage = "latest"
-uv = "latest"
-
 [tasks.deploy]
 run = "cd ansible && ansible-playbook site.yml"
