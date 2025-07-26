@@ -4,5 +4,12 @@
   "features": {
     "ghcr.io/tailscale/codespace/tailscale": {},
     "ghcr.io/devcontainers-extra/features/mise:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Tailscale.vscode-tailscale"
+      ]
+    }
   }
 }
