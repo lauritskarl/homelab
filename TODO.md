@@ -1,8 +1,8 @@
 # TODO
 
+- [ ] Set up this repo in gitea and push changes to github as well (signed commits from scratch)
 - [ ] Add pihole service
 - [ ] Add this selinux config to lab machine (setsebool -P virt_use_samba 1) aka "Allow virt to use samba"
-- [ ] Fix ansible vault secret names (unnecessary prefixes like tea_)
 - [ ] Implement health checks for all services
 - [ ] Set up specific versions for everything and renovate to update them
 - [ ] Set up Linkding (or Karakeep?)
@@ -13,7 +13,6 @@
 - [ ] Set up outline or grist for excel / notion
 - [ ] Set up paperless-ngx
 - [ ] Set up rallly for meeting / scheduling
-- [ ] Set up this repo in gitea and push changes to github as well (signed commits from scratch)
 - [ ] Move Tailscale ACL configuration to Git repository
 - [ ] Set up gitea actions
 - [ ] Automate tailscale authkey gen in terraform

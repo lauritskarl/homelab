@@ -1,3 +1,10 @@
+[settings]
+lockfile = true
+experimental = true
+
+[settings.python]
+uv_venv_auto = true
+
 [tools]
 ansible = "latest"
 github-cli = "latest"
