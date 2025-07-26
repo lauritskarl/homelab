@@ -1,24 +1,24 @@
 ---
 - name: Server setup
-  hosts: lab
+  hosts: all
   become: true
   gather_facts: false
   vars_files:
       - vault.yml
   roles:
       - common
-      - pocket-id
       - stalwart
-      - gitea
+      - pocket-id
+      # - tsidp
       - bitwarden
-      - searxng
-      - memos
       - immich
-      - jellyfin
-      - glance
-      - dumbpad
+      - memos
+      - gitea
+      - dumbassets
+      - dumbbudget
       - dumbdo
       - dumbkan
-      - dumbbudget
-      - dumbassets
-      # - tsidp
+      - dumbpad
+      - searxng
+      - jellyfin
+      - glance

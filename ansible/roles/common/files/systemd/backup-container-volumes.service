@@ -4,5 +4,5 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/root/backup-container-volumes.sh
+ExecStart=/root/scripts/backup-container-volumes.sh
 User=root

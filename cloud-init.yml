@@ -3,6 +3,8 @@ package_upgrade: true
 packages:
     - firewalld
 users:
+    - name: ansible
+      groups: wheel
     - name: devops
       groups: wheel
 write_files:

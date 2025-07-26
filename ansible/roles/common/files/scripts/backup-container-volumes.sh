@@ -1,62 +1,61 @@
 #!/usr/bin/env bash
 set -euox pipefail
 
-# Backup pocket-id volumes
-podman volume export pocket-id-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/pocket-id-data.tar
+BACKUP_DIR=/mnt/nas/BACKUPS/containers
 
-# Backup bitwarden volumes
-podman volume export bitwarden-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/bitwarden-data.tar
-podman volume export ts-bitwarden-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-bitwarden-state.tar
+systemctl stop stalwart-pod.service
+podman volume export stalwart-data --output=$BACKUP_DIR/stalwart-data.tar
+systemctl start stalwart-pod.service
 
-# Backup dumbassets volumes
-podman volume export dumbassets-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/dumbassets-data.tar
-podman volume export ts-dumbassets-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-dumbassets-state.tar
+systemctl stop pocket-id-pod.service
+podman volume export pocket-id-data --output=$BACKUP_DIR/pocket-id-data.tar
+systemctl start pocket-id-pod.service
 
-# Backup dumbbudget volumes
-podman volume export dumbbudget-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/dumbbudget-data.tar
-podman volume export ts-dumbbudget-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-dumbbudget-state.tar
+# systemctl stop tsidp-pod.service
+# podman volume export tsidp-data --output=$BACKUP_DIR/tsidp-data.tar
+# systemctl start tsidp-pod.service
 
-# Backup dumbdo volumes
-podman volume export dumbdo-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/dumbdo-data.tar
-podman volume export ts-dumbdo-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-dumbdo-state.tar
+systemctl stop bitwarden-pod.service
+podman volume export bitwarden-data --output=$BACKUP_DIR/bitwarden-data.tar
+systemctl start bitwarden-pod.service
 
-# Backup dumbkan volumes
-podman volume export dumbkan-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/dumbkan-data.tar
-podman volume export ts-dumbkan-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-dumbkan-state.tar
+systemctl stop immich-pod.service
+podman volume export immich-postgres --output=$BACKUP_DIR/immich-postgres.tar
+systemctl start immich-pod.service
 
-# Backup dumbpad volumes
-podman volume export dumbpad-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/dumbpad-data.tar
-podman volume export ts-dumbpad-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-dumbpad-state.tar
+systemctl stop memos-pod.service
+podman volume export memos-data --output=$BACKUP_DIR/memos-data.tar
+systemctl start memos-pod.service
 
-# Backup gitea volumes
-podman volume export gitea-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/gitea-data.tar
-podman volume export ts-gitea-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-gitea-state.tar
+systemctl stop gitea-pod.service
+podman volume export gitea-data --output=$BACKUP_DIR/gitea-data.tar
+systemctl start gitea-pod.service
 
-# Backup glance volumes
-podman volume export ts-glance-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-glance-state.tar
+systemctl stop dumbassets-pod.service
+podman volume export dumbassets-data --output=$BACKUP_DIR/dumbassets-data.tar
+systemctl start dumbassets-pod.service
 
-# Backup immich volumes
-podman volume export immich-postgres --output=/mnt/nas/BACKUPS/containers/storage/volumes/immich-postgres.tar
-podman volume export immich-redis --output=/mnt/nas/BACKUPS/containers/storage/volumes/immich-redis.tar
-podman volume export immich-model-cache --output=/mnt/nas/BACKUPS/containers/storage/volumes/immich-model-cache.tar
-podman volume export ts-immich-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-immich-state.tar
+systemctl stop dumbbudget-pod.service
+podman volume export dumbbudget-data --output=$BACKUP_DIR/dumbbudget-data.tar
+systemctl start dumbbudget-pod.service
 
-# Backup jellyfin volumes
-podman volume export jellyfin-cache --output=/mnt/nas/BACKUPS/containers/storage/volumes/jellyfin-cache.tar
-podman volume export jellyfin-config --output=/mnt/nas/BACKUPS/containers/storage/volumes/jellyfin-config.tar
-podman volume export ts-jellyfin-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-jellyfin-state.tar
+systemctl stop dumbdo-pod.service
+podman volume export dumbdo-data --output=$BACKUP_DIR/dumbdo-data.tar
+systemctl start dumbdo-pod.service
 
-# Backup memos volumes
-podman volume export memos-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/memos-data.tar
-podman volume export ts-memos-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-memos-state.tar
+systemctl stop dumbkan-pod.service
+podman volume export dumbkan-data --output=$BACKUP_DIR/dumbkan-data.tar
+systemctl start dumbkan-pod.service
 
-# Backup searxng volumes
-podman volume export searxng-config --output=/mnt/nas/BACKUPS/containers/storage/volumes/searxng-config.tar
-podman volume export searxng-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/searxng-data.tar
-podman volume export ts-searxng-state --output=/mnt/nas/BACKUPS/containers/storage/volumes/ts-searxng-state.tar
+systemctl stop dumbpad-pod.service
+podman volume export dumbpad-data --output=$BACKUP_DIR/dumbpad-data.tar
+systemctl start dumbpad-pod.service
 
-# Backup stalwart volumes
-podman volume export stalwart-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/stalwart-data.tar
+systemctl stop searxng-pod.service
+podman volume export searxng-config --output=$BACKUP_DIR/searxng-config.tar
+systemctl start searxng-pod.service
 
-# Backup tsidp volumes (commented out - role is disabled)
-# podman volume export tsidp-data --output=/mnt/nas/BACKUPS/containers/storage/volumes/tsidp-data.tar
+systemctl stop jellyfin-pod.service
+podman volume export jellyfin-config --output=$BACKUP_DIR/jellyfin-config.tar
+podman volume export jellyfin-cache --output=$BACKUP_DIR/jellyfin-cache.tar
+systemctl start jellyfin-pod.service

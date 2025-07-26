@@ -11,7 +11,7 @@
   args:
       creates: /etc/yum.repos.d/tailscale.repo
 
-- name: Ensure packages are installed
+- name: Ensure essential packages are installed
   ansible.builtin.dnf:
       name:
           - firewalld
@@ -33,7 +33,7 @@
       src: automatic.conf
       dest: /etc/dnf/automatic.conf
 
-- name: Ensure systemd services are started
+- name: Ensure essential services are started
   ansible.builtin.systemd_service:
       name: "{{ item }}"
       state: started
@@ -49,7 +49,7 @@
       - podman-restart.service
       - podman-auto-update.timer
 
-- name: Ensure firewall services are allowed
+- name: Ensure essential services are allowed through firewall
   ansible.posix.firewalld:
       service: "{{ item }}"
       state: enabled
@@ -102,17 +102,22 @@
 
 - name: Ensure backup directory exists
   ansible.builtin.file:
-      path: /mnt/nas/BACKUPS/containers/storage/volumes
+      path: /mnt/nas/BACKUPS/containers
       state: directory
 
-- name: Ensure scripts are present
+- name: Ensure backup scripts are present
   ansible.builtin.copy:
       src: scripts/
       dest: /root/scripts/
       mode: "0755"
 
-- name: Ensure systemd units are present
+- name: Ensure backup systemd units are present
   ansible.builtin.copy:
       src: systemd/
       dest: /etc/systemd/system/
-  notify: Enable backup timer
+
+- name: Enable backup timer
+  ansible.builtin.systemd_service:
+      name: backup-container-volumes.timer
+      enabled: true
+      daemon_reload: true
