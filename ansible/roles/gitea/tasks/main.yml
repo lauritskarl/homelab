@@ -18,21 +18,21 @@
       data: "{{ item.data }}"
   loop:
       - name: ts-authkey
-        data: "{{ tailscale.ts_authkey }}"
+        data: "{{ tailscale.authkey }}"
       - name: tea-mailer-enabled
-        data: "{{ gitea.tea_mailer_enabled }}"
+        data: "{{ gitea.mailer_enabled }}"
       - name: tea-mailer-protocol
-        data: "{{ gitea.tea_mailer_protocol }}"
+        data: "{{ gitea.mailer_protocol }}"
       - name: tea-mailer-smtp-addr
-        data: "{{ gitea.tea_mailer_smtp_addr }}"
+        data: "{{ gitea.mailer_smtp_addr }}"
       - name: tea-mailer-smtp-port
-        data: "{{ gitea.tea_mailer_smtp_port }}"
+        data: "{{ gitea.mailer_smtp_port }}"
       - name: tea-mailer-user
-        data: "{{ gitea.tea_mailer_user }}"
+        data: "{{ gitea.mailer_user }}"
       - name: tea-mailer-passwd
-        data: "{{ gitea.tea_mailer_passwd }}"
+        data: "{{ gitea.mailer_passwd }}"
       - name: tea-mailer-from
-        data: "{{ gitea.tea_mailer_from }}"
+        data: "{{ gitea.mailer_from }}"
   register: gitea_secrets_changed
   no_log: true
   notify: Restart Gitea service

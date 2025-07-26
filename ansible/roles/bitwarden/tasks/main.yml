@@ -18,27 +18,27 @@
       data: "{{ item.data }}"
   loop:
       - name: ts-authkey
-        data: "{{ tailscale.ts_authkey }}"
+        data: "{{ tailscale.authkey }}"
       - name: bw-domain
-        data: "{{ bitwarden.bw_domain }}"
+        data: "{{ bitwarden.domain }}"
       - name: bw-installation-id
-        data: "{{ bitwarden.bw_installation_id }}"
+        data: "{{ bitwarden.installation_id }}"
       - name: bw-installation-key
-        data: "{{ bitwarden.bw_installation_key }}"
+        data: "{{ bitwarden.installation_key }}"
       - name: bw-admins
-        data: "{{ bitwarden.bw_admins }}"
+        data: "{{ bitwarden.admins }}"
       - name: bw-reply-to-email
-        data: "{{ bitwarden.bw_reply_to_email }}"
+        data: "{{ bitwarden.reply_to_email }}"
       - name: bw-smtp-host
-        data: "{{ bitwarden.bw_smtp_host }}"
+        data: "{{ bitwarden.smtp_host }}"
       - name: bw-smtp-port
-        data: "{{ bitwarden.bw_smtp_port }}"
+        data: "{{ bitwarden.smtp_port }}"
       - name: bw-smtp-ssl
-        data: "{{ bitwarden.bw_smtp_ssl }}"
+        data: "{{ bitwarden.smtp_ssl }}"
       - name: bw-smtp-username
-        data: "{{ bitwarden.bw_smtp_username }}"
+        data: "{{ bitwarden.smtp_username }}"
       - name: bw-smtp-password
-        data: "{{ bitwarden.bw_smtp_password }}"
+        data: "{{ bitwarden.smtp_password }}"
   register: bitwarden_secrets_changed
   no_log: true
   notify: Restart Bitwarden service

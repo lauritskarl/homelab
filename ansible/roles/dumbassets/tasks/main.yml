@@ -15,7 +15,7 @@
   containers.podman.podman_secret:
       state: present
       name: "ts-authkey"
-      data: "{{ tailscale.ts_authkey }}"
+      data: "{{ tailscale.authkey }}"
   no_log: true
   register: dumbassets_secrets_changed
   notify: Restart Dumbassets service

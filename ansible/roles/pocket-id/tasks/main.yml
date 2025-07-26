@@ -18,35 +18,35 @@
       data: "{{ item.data }}"
   loop:
       - name: cf-tunnel-token
-        data: "{{ cloudflare.cf_tunnel_token }}"
+        data: "{{ cloudflare.tunnel_token }}"
       - name: id-app-url
-        data: "{{ pocketid.id_app_url }}"
+        data: "{{ pocketid.app_url }}"
       - name: id-trust-proxy
-        data: "{{ pocketid.id_trust_proxy }}"
+        data: "{{ pocketid.trust_proxy }}"
       - name: id-emails-verified
-        data: "{{ pocketid.id_emails_verified }}"
+        data: "{{ pocketid.emails_verified }}"
       - name: id-allow-user-signups
-        data: "{{ pocketid.id_allow_user_signups }}"
+        data: "{{ pocketid.allow_user_signups }}"
       - name: id-disable-animations
-        data: "{{ pocketid.id_disable_animations }}"
+        data: "{{ pocketid.disable_animations }}"
       - name: id-smtp-host
-        data: "{{ pocketid.id_smtp_host }}"
+        data: "{{ pocketid.smtp_host }}"
       - name: id-smtp-port
-        data: "{{ pocketid.id_smtp_port }}"
+        data: "{{ pocketid.smtp_port }}"
       - name: id-smtp-from
-        data: "{{ pocketid.id_smtp_from }}"
+        data: "{{ pocketid.smtp_from }}"
       - name: id-smtp-user
-        data: "{{ pocketid.id_smtp_user }}"
+        data: "{{ pocketid.smtp_user }}"
       - name: id-smtp-password
-        data: "{{ pocketid.id_smtp_password }}"
+        data: "{{ pocketid.smtp_password }}"
       - name: id-smtp-tls
-        data: "{{ pocketid.id_smtp_tls }}"
+        data: "{{ pocketid.smtp_tls }}"
       - name: id-email-login-notification-enabled
-        data: "{{ pocketid.id_email_login_notification_enabled }}"
+        data: "{{ pocketid.email_login_notification_enabled }}"
       - name: id-email-one-time-access-as-admin-enabled
-        data: "{{ pocketid.id_email_one_time_access_as_admin_enabled }}"
+        data: "{{ pocketid.email_one_time_access_as_admin_enabled }}"
       - name: id-email-api-key-expiration-enabled
-        data: "{{ pocketid.id_email_api_key_expiration_enabled }}"
+        data: "{{ pocketid.email_api_key_expiration_enabled }}"
   no_log: true
   register: pocket_id_secrets_changed
   notify: Restart Pocket ID service
