@@ -7,6 +7,8 @@ Image=ghcr.io/tailscale/tailscale:latest
 AutoUpdate=registry
 ContainerName=ts-dumbpad
 HostName=dumbpad
+DNS=100.100.100.100
+DNS=1.1.1.1
 Secret=ts-authkey,type=env,target=TS_AUTHKEY
 Environment=TS_STATE_DIR=/var/lib/tailscale
 Environment=TS_USERSPACE=false
